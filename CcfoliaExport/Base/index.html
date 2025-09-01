@@ -1,0 +1,34 @@
+<head>
+    <title id="title"></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800 p-6">
+    <div class="max-w-6xl mx-auto space-y-6">
+        <h1 class="text-2xl text-center font-bold border-b pb-2" id="title"></h1>
+        
+        <div class="flex justify-between gap-x-4">
+            <div class="flex flex-col gap-y-4 w-[calc(50%-1rem/2)]">
+                <!-- URL入力 -->
+                <div class="border border-gray-300 rounded p-4 flex flex-col gap-y-2">
+                    <label class="block font-medium">キャラシートのURLを入力してください</label>
+                    <input type="text" id="character_sheets_url" class="w-full border rounded px-3 py-2" />
+                    <button id="conversion" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">変換</button>
+                </div>
+                
+                <!-- 設定エリア -->
+                <div id="option" class="border border-gray-300 rounded p-4 space-y-4 flex flex-col gap-y-1">
+                    
+                </div>
+            </div>
+            <div class="flex flex-col gap-y-4 w-[calc(50%-1rem/2)]">
+                <!-- 出力エリア -->
+                <div id="output" class="border border-gray-300 rounded p-4 space-y-4 flex flex-col gap-y-2">
+                    <label class="block font-medium">変換結果一覧</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="Base/js/main.js"></script>
+</body>
