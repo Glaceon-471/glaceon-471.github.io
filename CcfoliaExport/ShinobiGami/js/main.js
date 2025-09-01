@@ -300,7 +300,7 @@ const skills = {
         "name4": "人脈",
         "name5": "呪術"
     }
-}
+};
 
 function checkAddCornerBrackets(name) {
     if (all_add_brackets_ninpou_name.checked) {
