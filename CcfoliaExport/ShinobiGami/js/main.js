@@ -484,7 +484,6 @@ function resultGenerate(data) {
     if (memo_mention_ninpou.checked && ninpou.length > 0) memo.push(`忍法 :\n${ninpou.join("\n")}`);
     
     chat_palette.push("@各種表\n{シーン表を振る}\n{感情表を振る}\n{ファンブル表を振る}\n{変調表を振る}");
-    if (!status_compile_vitality.checked) chat_palette.push("@生命力関係\n:器術-1\n:器術+1\n:体術-1\n:体術+1\n:忍術-1\n:忍術+1\n:謀術-1\n:謀術+1\n:戦術-1\n:戦術+1\n:妖術-1\n:妖術+1");
     if (chat_palette_mention_learned_skill.checked) {
         const learned = [];
         for (const element of data.learned) {
