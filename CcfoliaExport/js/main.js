@@ -4,7 +4,7 @@ async function setContent(system) {
         throw new Error(`HTTPエラー: ${response.status}`);
     }
     document.body.outerHTML = await response.text();
-    document.body.querySelectorAll("script").forEach(value => {
+    document.querySelectorAll("#added_html script").forEach(value => {
         let script = document.createElement("script");
         script.src = value.src;
         value.remove();
