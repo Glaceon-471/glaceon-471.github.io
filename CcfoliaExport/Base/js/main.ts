@@ -142,8 +142,11 @@ function startGenerate(isClick: boolean): void {
             return;
     }
     
-    axios.get(url).then(response => {
-        resultGenerate(response.data);
+    $.ajax({
+        url: url,
+        dataType: "jsonp",
+        callback: "resultGenerate",
+        jsonp: false
     });
 }
 
