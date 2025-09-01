@@ -4,11 +4,13 @@ async function setContent(system) {
         throw new Error(`HTTPエラー: ${response.status}`);
     }
     document.body.outerHTML = await response.text();
-    document.querySelectorAll("#added_html script").forEach(value => {
-        let script = document.createElement("script");
-        script.src = value.src;
-        value.remove();
-        document.body.appendChild(script);
+    document.querySelectorAll("#added_html").forEach(element => {
+        element.querySelectorAll("script").forEach(value => {
+            let script = document.createElement("script");
+            script.src = value.src;
+            value.remove();
+            element.appendChild(script);
+        });
     });
 }
 
