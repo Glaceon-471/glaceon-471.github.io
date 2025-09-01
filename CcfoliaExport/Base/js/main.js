@@ -144,8 +144,11 @@ function startGenerate(isClick) {
                 alert("\"".concat(url, "\"\u306F\u5BFE\u5FDC\u3057\u3066\u3044\u306A\u3044\u30EA\u30F3\u30AF\u3067\u3059"));
             return;
     }
-    axios.get(url).then(function (response) {
-        resultGenerate(response.data);
+    $.ajax({
+        url: url,
+        dataType: "jsonp",
+        callback: "resultGenerate",
+        jsonp: false
     });
 }
 var corner_brackets = /^【.+】$/;
