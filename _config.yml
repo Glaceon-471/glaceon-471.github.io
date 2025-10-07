@@ -1,0 +1,16 @@
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - package-lock.json
+  - package.json
+  - start.bat
+pulgins:
+  - jekyll-postcss
+sass:
+  load_paths:
+    - _sass
+    - node_modules
+title: "Glaceon-471のツール置き場"
+
+lang: ja-JP
