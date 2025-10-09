@@ -1,16 +1,20 @@
 exclude:
+  - node_modules
+  - "*.bat"
+  - "*.before.css"
+  - "*.config.js"
+  - "*.d.ts"
   - Gemfile
   - Gemfile.lock
   - LICENSE
   - package-lock.json
   - package.json
-  - start.bat
-pulgins:
-  - jekyll-postcss
+  - README.md
 sass:
   load_paths:
     - _sass
     - node_modules
 title: "Glaceon-471のツール置き場"
 
-lang: ja-JP
+titles:
+  ccfolia_export: "キャラシート変換ツール"

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "ja-JP" }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>{{ page.title }} - {{ site.titles.ccfolia_export }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
+    {% if page.stylesheets %}
+      {% for stylesheet in page.stylesheets %}
+        <link rel="stylesheet" href="{{ stylesheet | relative_url }}">
+      {% endfor %}
+    {% endif %}
+    {% if page.pre_scripts %}
+      {% for script in page.pre_scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+  </head>
+  <body class="bg-white text-gray-800 p-6">
+    <div class="max-w-6xl mx-auto space-y-6">
+      <h1 class="text-2xl text-center font-bold border-b border-gray-200 pb-2" id="title">{{ page.title }} - {{ site.titles.ccfolia_export }}</h1>
+      
+      <div class="flex justify-between gap-x-4">
+        <div class="flex flex-col gap-y-4 w-[calc(50%-1rem/2)]">
+          <!-- URL入力 -->
+          <div class="border border-gray-300 rounded p-4 flex flex-col gap-y-2">
+            <label class="block font-medium">キャラシートのURLを入力してください</label>
+            <input type="text" id="character_sheets_url" class="w-full border border-gray-200 rounded px-3 py-2" placeholder="https://character-sheets.appspot.com/{{ page.id }}/..." />
+            <button id="conversion" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">変換</button>
+          </div>
+          
+          <!-- 設定エリア -->
+          <div id="option" class="border border-gray-300 rounded p-4 space-y-4 flex flex-col gap-y-1">
+            {% comment %}
+            <div id="" class="border border-gray-300 rounded p-4">
+              <label class="block font-medium"></label>
+              <select id="" class="border border-gray-200 rounded px-2 py-1"></select>
+              <label class="block"><input type="checkbox" id="" class="mr-2"></label>
+            </div>
+            {% endcomment %}
+            {{ content }}
+          </div>
+        </div>
+        <div class="flex flex-col gap-y-4 w-[calc(50%-1rem/2)]">
+          <!-- 出力エリア -->
+          <div id="output" class="border border-gray-300 rounded p-4 space-y-4 flex flex-col gap-y-2">
+            <label class="block font-medium">変換結果一覧</label>
+            <div id="ccfolia" class="border border-gray-300 rounded p-4 flex flex-col gap-y-2">
+              <label class="block font-medium">ココフォリア式出力</label>
+              <textarea class="w-full h-40 border border-gray-200 rounded p-2" placeholder="ここに変換結果が表示されます" readonly></textarea>
+              <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">コピー</button>
+            </div>
+            <div id="memo" class="border border-gray-300 rounded p-4 flex flex-col gap-y-2">
+              <label class="block font-medium">メモ出力</label>
+              <textarea class="w-full h-40 border border-gray-200 rounded p-2" placeholder="ここに変換結果が表示されます" readonly></textarea>
+              <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">コピー</button>
+            </div>
+            <div id="chat_palette" class="border border-gray-300 rounded p-4 flex flex-col gap-y-2">
+              <label class="block font-medium">チャットパレット出力</label>
+              <textarea class="w-full h-40 border border-gray-200 rounded p-2" placeholder="ここに変換結果が表示されます" readonly></textarea>
+              <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">コピー</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="{{ '/assets/js/jquery-3.7.1.min.js' | relative_url }}"></script>
+    <script>
+      const system = "{{ page.id }}";
+      const skills = {{ page.skills | jsonify }};
+    </script>
+    <script src="{{ '/assets/js/ccfolia_export/base.js' | relative_url }}"></script>
+    {% if page.post_scripts %}
+      {% for script in page.post_scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>

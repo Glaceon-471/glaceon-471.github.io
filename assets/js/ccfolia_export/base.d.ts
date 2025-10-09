@@ -1,0 +1,12 @@
+function getOption(group: string, id: string): HTMLElement | null;
+function addOutputSlot(group_id: string, id: string, text: string): HTMLTextAreaElement | null;
+function checkBlank(text: string): boolean;
+function checkURL(url: string): 0 | 1 | 2 | 3 | 4;
+function startGenerate(is_click: boolean): void;
+function addCornerBrackets(name: string): string;
+function checkAddCornerBrackets(name: string, checked: boolean): string;
+function addDoubleParentheses(name: string): string;
+function checkAddDoubleParentheses(name: string, checked: boolean): string;
+function addReferencePage(name: string): string;
+function checkAddPReferencePage(name: string, checked: boolean): string;
+function convertSkill(id: string): string | undefined;

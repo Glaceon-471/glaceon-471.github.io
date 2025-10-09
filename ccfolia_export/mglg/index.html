@@ -1,0 +1,143 @@
+---
+layout: ccfolia_export/base
+
+id: mglg
+post_scripts:
+  - /assets/js/ccfolia_export/mglg/main.js
+skills:
+  row0:
+    name0: "黄金"
+    name1: "肉"
+    name2: "重力"
+    name3: "物語"
+    name4: "追憶"
+    name5: "深淵"
+  row1:
+    name0: "大地"
+    name1: "蟲"
+    name2: "風"
+    name3: "旋律"
+    name4: "謎"
+    name5: "腐敗"
+  row2:
+    name0: "森"
+    name1: "花"
+    name2: "流れ"
+    name3: "涙"
+    name4: "嘘"
+    name5: "裏切り"
+  row3:
+    name0: "道"
+    name1: "血"
+    name2: "水"
+    name3: "別れ"
+    name4: "不安"
+    name5: "迷い"
+  row4:
+    name0: "海"
+    name1: "鱗"
+    name2: "波"
+    name3: "微笑み"
+    name4: "眠り"
+    name5: "怠惰"
+  row5:
+    name0: "静寂"
+    name1: "混沌"
+    name2: "自由"
+    name3: "想い"
+    name4: "偶然"
+    name5: "歪み"
+  row6:
+    name0: "雨"
+    name1: "牙"
+    name2: "衝撃"
+    name3: "勝利"
+    name4: "幻"
+    name5: "不幸"
+  row7:
+    name0: "嵐"
+    name1: "叫び"
+    name2: "雷"
+    name3: "恋"
+    name4: "狂気"
+    name5: "バカ"
+  row8:
+    name0: "太陽"
+    name1: "怒り"
+    name2: "炎"
+    name3: "情熱"
+    name4: "祈り"
+    name5: "悪意"
+  row9:
+    name0: "天空"
+    name1: "翼"
+    name2: "光"
+    name3: "癒し"
+    name4: "希望"
+    name5: "絶望"
+  row10:
+    name0: "異界"
+    name1: "エロス"
+    name2: "円環"
+    name3: "時"
+    name4: "未来"
+    name5: "死"
+title: マギカロギア
+---
+<div id="base">
+  <label class="block font-medium">全体の形式</label>
+  <select id="format_type" class="border border-gray-200 rounded px-2 py-1">
+    <option value="standard">標準</option>
+    <option value="brief">簡略</option>
+    <option value="expansion">拡張</option>
+    <option value="custom">カスタム</option>
+  </select>
+  <label class="block"><input type="checkbox" id="add_brackets_magic_name" class="mr-2" checked>魔法名に【】を付ける (すでに付いている場合はスキップ)</label>
+  <label class="block"><input type="checkbox" id="add_brackets_designated_specialties" class="mr-2" checked>指定特技に《》を付ける (すでに付いている場合はスキップ)</label>
+  <label class="block"><input type="checkbox" id="add_p_page" class="mr-2" checked>参照ページにPを付ける (すでに付いている場合はスキップ)</label>
+  <label class="block"><input type="checkbox" id="mention_url" class="mr-2">キャラクターシートのURLを記載する</label>
+</div>
+
+<div id="library" class="border border-gray-300 rounded p-4">
+  <label class="block font-medium">蔵書の形式</label>
+  <label class="block"><input type="checkbox" id="mention_name" class="mr-2" checked>魔法名を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_type" class="mr-2">魔法タイプを記載する</label>
+  <label class="block"><input type="checkbox" id="mention_skill" class="mr-2" checked>指定特技を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_target" class="mr-2">目標を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_mana" class="mr-2" checked>魔素を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_page" class="mr-2">参照ページを記載する</label>
+</div>
+
+<div id="anchor" class="border border-gray-300 rounded p-4">
+  <label class="block font-medium">アンカーの形式</label>
+  <label class="block"><input type="checkbox" id="mention_name" class="mr-2" checked>名前を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_destiny" class="mr-2" checked>運命を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_attribute" class="mr-2" checked>属性を記載する</label>
+</div>
+
+<div id="memo" class="border border-gray-300 rounded p-4">
+  <label class="block font-medium">メモの形式</label>
+  <label class="block"><input type="checkbox" id="mention_magic_name" class="mr-2" checked>魔法名を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_sex" class="mr-2" checked>性別を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_age" class="mr-2" checked>年齢を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_level" class="mr-2" checked>階梯を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_domain" class="mr-2">領域を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_attribute" class="mr-2">能力値を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_career" class="mr-2" checked>経歴/機関を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_belief" class="mr-2">信条を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_cover" class="mr-2" checked>表の顔を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_memo" class="mr-2">メモを記載する</label>
+  <label class="block"><input type="checkbox" id="mention_true_form" class="mr-2">真の姿を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_true_form_effect" class="mr-2">真の姿の効果を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_soul_skill" class="mr-2">魂の特技を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_library" class="mr-2">蔵書を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_anchor" class="mr-2">アンカーを記載する</label>
+</div>
+
+<div id="chat_palette" class="border border-gray-300 rounded p-4">
+  <label class="block font-medium">チャットパレットの形式</label>
+  <label class="block"><input type="checkbox" id="mention_magic_name" class="mr-2">魔法名を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_true_form" class="mr-2" checked>真の姿とその効果を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_skill" class="mr-2" checked>修得特技を記載する</label>
+  <label class="block"><input type="checkbox" id="mention_library" class="mr-2" checked>蔵書を記載する</label>
+</div>
