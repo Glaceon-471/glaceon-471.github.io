@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "ja-JP" }}">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>
+      {{ page.title }}
+      -
+      {{ site.title }}
+    </title>
+    {% if page.stylesheets %}
+      {% for stylesheet in page.stylesheets %}
+        <link rel="stylesheet" href="{{ stylesheet | relative_url }}">
+      {% endfor %}
+    {% endif %}
+    {% if page.pre_scripts %}
+      {% for script in page.pre_scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+  </head>
+  <body>
+    {{ content }}
+    {% if page.post_scripts %}
+      {% for script in page.post_scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>
