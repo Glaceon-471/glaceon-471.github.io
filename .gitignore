@@ -2,3 +2,5 @@
 /node_modules
 
 /assets/css/tailwind.css
+
+package-lock.json

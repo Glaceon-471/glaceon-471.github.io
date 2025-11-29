@@ -38,9 +38,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install npm Packages
-        run: npm ci --include=optional
-      - name: Rebuild lightningcss
-        run: npm rebuild lightningcss
+        run: npm install
       - name: Setup TailwindCSS
         run: npm run tailwindcss:create
       - name: Setup Ruby
