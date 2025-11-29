@@ -37,6 +37,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Remove npm package lock json
+        run: rm -f package-lock.json
       - name: Install npm Packages
         run: npm install
       - name: Setup TailwindCSS
@@ -48,6 +50,8 @@ jobs:
           ruby-version: '3.2' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
+      - name: Remove Jekyll sample post
+        run: rm -f _posts/0000-00-00-welcome-to-jekyll.markdown
       - name: Jekyll Build
         run: bundle exec jekyll build
       - name: Upload artifact
