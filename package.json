@@ -7,7 +7,6 @@
     "format:prettier": "prettier -w \"${0}\"",
     "format:stylelint": "stylelint \"${0}\" --fix",
     "format:all": "npm run format:prettier \"./**/*.{html,js,css}\" ; npm run format:stylelint \"./**/*.css\"",
-    "postinstall": "npm rebuild lightningcss --include=optional",
     "tailwindcss:create": "tailwindcss -i ./assets/css/tailwind.before.css -o ./assets/css/tailwind.css"
   },
   "repository": {

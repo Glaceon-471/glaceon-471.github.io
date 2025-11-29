@@ -38,7 +38,7 @@ jobs:
         with:
           node-version: '22'
       - name: Install npm Packages
-        run: npm install --omit=dev
+        run: npm install --include=optional --omit=dev
       - name: Setup TailwindCSS
         run: npm run tailwindcss:create
       - name: Setup Ruby
