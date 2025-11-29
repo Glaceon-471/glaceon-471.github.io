@@ -201,33 +201,14 @@ document.querySelectorAll("#option div:not(#base) input[type=\"checkbox\"]:not(#
   };
 });
 
-const blacklist = [status_additional_vitality.id];
-document.querySelectorAll("#option div:not(#null) input[type=\"checkbox\"]").forEach(element => {
-  if (blacklist.includes(element.id)) return;
-  element.onchange = (event) => {
-    all_format_type.value = "custom";
-  };
-});
-
 function resultGenerate(data) {
   const url = character_sheets_url.value;
-  const url_type = checkURL("shinobigami", url);
-  const ninpou = [];
+  const url_type = checkURL(url);
   const status = [];
   const params = [];
   const memo = [];
   const chat_palette = [];
-  
-  for (const element of data.ninpou) {
-    const data = [];
-    if (ninpou_mention_name.checked && !checkBlank(element.name)) data.push(checkAddCornerBrackets(element.name, all_add_brackets_ninpou_name.checked).replace("\n", " "));
-    if (ninpou_mention_type.checked && !checkBlank(element.type)) data.push(`${element.type}忍法`);
-    if (ninpou_mention_target_skill.checked && !checkBlank(element.targetSkill)) data.push(checkAddDoubleParentheses(element.targetSkill, all_add_brackets_designated_specialties.checked));
-    if (ninpou_mention_range.checked && !checkBlank(element.range)) data.push(element.range);
-    if (ninpou_mention_cost.checked && !checkBlank(element.cost)) data.push(element.cost);
-    if (ninpou_mention_page.checked && !checkBlank(element.page)) data.push(checkAddPReferencePage(element.page, all_add_p_page.checked));
-    ninpou.push(data.join(" "));
-  }
+  const chat_palette_variable = [];
   
   if (status_compile_vitality.checked) {
     status.push({
@@ -296,19 +277,19 @@ function resultGenerate(data) {
   }
   
   params.push({
-    label: "シーン表を振る",
+    label: "シーン表",
     value: "ST"
   });
   params.push({
-    label: "感情表を振る",
+    label: "感情表",
     value: "ET"
   });
   params.push({
-    label: "ファンブル表を振る",
+    label: "ファンブル表",
     value: "FT"
   });
   params.push({
-    label: "変調表を振る",
+    label: "変調表",
     value: "WT"
   });
   
@@ -362,19 +343,55 @@ function resultGenerate(data) {
   if (memo_mention_level.checked && !checkBlank(data.base.level)) memo.push(`階級 : ${data.base.level}`);
   if (memo_mention_mission.checked && !checkBlank(data.scenario.mission)) memo.push(`使命 :\n${data.scenario.mission}`);
   if (memo_mention_memo.checked && !checkBlank(data.base.memo)) memo.push(`メモ :\n${data.base.memo}`);
-  if (memo_mention_ninpou.checked && ninpou.length > 0) memo.push(`忍法 :\n${ninpou.join("\n")}`);
+  if (memo_mention_ninpou.checked && data.ninpou.length > 0) {
+    const ninpou = [];
+    for (const element of data.ninpou) {
+      const data = [];
+      data.push(checkAddCornerBrackets(element.name, all_add_brackets_ninpou_name.checked).replace("\n", " "));
+      if (ninpou_mention_type.checked && !checkBlank(element.type)) data.push(`${element.type}忍法`);
+      if (ninpou_mention_target_skill.checked && !checkBlank(element.targetSkill)) data.push(checkAddDoubleParentheses(element.targetSkill, all_add_brackets_designated_specialties.checked));
+      if (ninpou_mention_range.checked && !checkBlank(element.range)) data.push(element.range);
+      if (ninpou_mention_cost.checked && !checkBlank(element.cost)) data.push(element.cost);
+      if (ninpou_mention_page.checked && !checkBlank(element.page)) data.push(checkAddPReferencePage(element.page, all_add_p_page.checked));
+      ninpou.push(data.join(" "));
+    }
+    memo.push(`忍法 :\n${ninpou.join("\n")}`);
+  }
   
   chat_palette.push("@各種表\n{シーン表を振る}\n{感情表を振る}\n{ファンブル表を振る}\n{変調表を振る}");
+  chat_palette_variable.push(`シーン表を振る={シーン表}`);
+  chat_palette_variable.push(`感情表を振る={感情表}`);
+  chat_palette_variable.push(`ファンブル表を振る={ファンブル表}`);
+  chat_palette_variable.push(`変調表を振る={変調表}`);
   if (chat_palette_mention_skill.checked) {
     const learned = [];
+    learned.push("{判定}");
+    chat_palette_variable.push(`判定=SG${status_three_values.checked ? "@{スペシャル値}#{ファンブル値}>={目標値}" : ">=5"}`);
     for (const element of data.learned) {
       if (checkBlank(element.id)) continue;
-      if (status_three_values.checked) learned.push(`SG@{スペシャル値}#{ファンブル値}>={目標値} （判定 : ${convertSkill(element.id)}）`);
-      else learned.push(`SG>=5 （判定 : ${convertSkill(element.id)}）`);
+      const skill = convertSkill(element.id);
+      learned.push(`{${skill}判定}`);
+      chat_palette_variable.push(`${skill}判定=SG${status_three_values.checked ? "@{スペシャル値}#{ファンブル値}>={目標値}" : ">=5"} (判定 : ${skill})`);
     }
-    if (learned.length > 0) chat_palette.push(`@修得特技\n${learned.join("\n")}`)
+    if (learned.length > 0) chat_palette.push(`@特技\n${learned.join("\n")}`);
   }
-  if (chat_palette_mention_ninpou.checked && ninpou.length > 0) chat_palette.push(`@忍法\n${ninpou.join("\n")}`);
+  if (chat_palette_mention_ninpou.checked && data.ninpou.length > 0) {
+    const ninpou = [];
+    for (const element of data.ninpou) {
+      const data = [];
+      data.push(checkAddCornerBrackets(element.name, all_add_brackets_ninpou_name.checked).replace("\n", " "));
+      if (ninpou_mention_type.checked && !checkBlank(element.type)) data.push(`${element.type}忍法`);
+      if (ninpou_mention_target_skill.checked && !checkBlank(element.targetSkill)) data.push(checkAddDoubleParentheses(element.targetSkill, all_add_brackets_designated_specialties.checked));
+      if (ninpou_mention_range.checked && !checkBlank(element.range)) data.push(element.range);
+      if (ninpou_mention_cost.checked && !checkBlank(element.cost)) data.push(element.cost);
+      if (ninpou_mention_page.checked && !checkBlank(element.page)) data.push(checkAddPReferencePage(element.page, all_add_p_page.checked));
+      const name = checkAddCornerBrackets(element.name, false).replace("\n", " ");
+      ninpou.push(`{${name}}`);
+      chat_palette_variable.push(`${name}=${data.join(" ")}`);
+    }
+    chat_palette.push(`@忍法\n${ninpou.join("\n")}`);
+  }
+  chat_palette.push(`@チャントパレット変数\n${chat_palette_variable.map(value => `//${value}`).join("\n")}`);
   
   const json = {
     kind: "character",

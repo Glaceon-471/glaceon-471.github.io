@@ -1,15 +1,17 @@
 exclude:
-  - node_modules
+  - "node_modules"
+  - "**/*.before.css"
+  - "**/README.md"
   - "*.bat"
   - "*.before.css"
   - "*.config.js"
-  - "*.d.ts"
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - package-lock.json
-  - package.json
-  - README.md
+  - "Gemfile"
+  - "Gemfile.lock"
+  - "LICENSE"
+  - "package-lock.json"
+  - "package.json"
+  - "README.md"
+  - "handout_maker"
 sass:
   load_paths:
     - _sass
@@ -18,3 +20,4 @@ title: "Glaceon-471のツール置き場"
 
 titles:
   ccfolia_export: "キャラシート変換ツール"
+  handout_maker: "ハンドアウト自動生成ツール"

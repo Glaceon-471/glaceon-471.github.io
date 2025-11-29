@@ -1,4 +1,4 @@
-# [CcfoliaExport](https://glaceon-471.github.io/ccfolia_export)
+# [Ccfolia Export](https://glaceon-471.github.io/ccfolia_export)
 キャラクター保管庫で作られた複数のシステムのキャラシートをココフォリアに出力するサイトです。
 
 ## 現在対応しているシステム

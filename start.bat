@@ -1,4 +1,3 @@
 @echo off
-npx postcss ./assets/css/tailwind.before.css -o ./assets/css/tailwind.css
+call bundle exec jekyll serve
 pause
-bundle exec jekyll serve

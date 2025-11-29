@@ -4,10 +4,20 @@ const ccfolia_result = document.querySelector("div#output > div#ccfolia > textar
 const memo_result = document.querySelector("div#output > div#memo > textarea");
 const chat_palette_result = document.querySelector("div#output > div#chat_palette > textarea");
 
+/**
+ * @param {string} group 
+ * @param {string} id 
+ * @returns {Element | null}
+ */
 function getOption(group, id) {
   return document.querySelector(`div#option > div#${group} #${id}`);
 }
 
+/**
+ * @param {string} id 
+ * @param {string} text 
+ * @returns {HTMLTextAreaElement} 
+ */
 function addOutputSlot(id, text) {
   let div = document.createElement("div");
   div.id = id;
@@ -34,10 +44,18 @@ function addOutputSlot(id, text) {
   return document.querySelector(`div#output > div#${id} > textarea`);
 }
 
+/**
+ * @param {string} text 
+ * @returns {boolean}
+ */
 function checkBlank(text) {
   return !text || (typeof text == "string" && text.length <= 0);
 }
 
+/**
+ * @param {string} url 
+ * @returns {0 | 1 | 2 | 3 | 4} 0: 対応していないリンク, 1~4: 対応しているリンク
+ */
 function checkURL(url) {
   if (new RegExp(`^https://character-sheets.appspot.com/${system}/edit.html\\?key=[\\w-]+$`).test(url))
     return 1;
@@ -50,6 +68,9 @@ function checkURL(url) {
   return 0;
 }
 
+/**
+ * @param {boolean} is_click
+ */
 function startGenerate(is_click) {
   let url = character_sheets_url ? character_sheets_url.value : void 0;
   switch (checkURL(url)) {
@@ -79,10 +100,19 @@ function startGenerate(is_click) {
 }
 
 const corner_brackets = /^【.+】$/;
+/**
+ * @param {string} name 
+ * @returns {string}
+ */
 function addCornerBrackets(name) {
   if (corner_brackets.test(name)) return name;
   else return `【${name}】`;
 }
+/**
+ * @param {string} name 
+ * @param {boolean} checked 
+ * @returns {string}
+ */
 function checkAddCornerBrackets(name, checked) {
   if (checked) return addCornerBrackets(name);
   else if (corner_brackets.test(name)) return name.match(corner_brackets)[0].substring(1, -1);
@@ -90,12 +120,21 @@ function checkAddCornerBrackets(name, checked) {
 }
 
 const double_parentheses = /^《.+》$/;
+/**
+ * @param {string} name 
+ * @returns {string}
+ */
 function addDoubleParentheses(name) {
   if (name.includes("可変")) return "可変";
   else if (name.includes("なし")) return "なし";
   else if (double_parentheses.test(name)) return name;
   else return `《${name}》`;
 }
+/**
+ * @param {string} name 
+ * @param {boolean} checked 
+ * @returns {string}
+ */
 function checkAddDoubleParentheses(name, checked) {
   if (checked) return addDoubleParentheses(name);
   else if (double_parentheses.test(name)) return name.match(double_parentheses)[0].substring(1, -1);
@@ -103,10 +142,19 @@ function checkAddDoubleParentheses(name, checked) {
 }
 
 const reference_page = /^.+P$/i;
+/**
+ * @param {string} name 
+ * @returns {string}
+ */
 function addReferencePage(name) {
   if (reference_page.test(name)) return name;
   else return `${name}P`;
 }
+/**
+ * @param {string} name 
+ * @param {boolean} checked 
+ * @returns {string}
+ */
 function checkAddPReferencePage(name, checked) {
   if (checked) return addReferencePage(name);
   else if (reference_page.test(name)) return name.match(reference_page)[0].substring(0, -1);
@@ -115,6 +163,10 @@ function checkAddPReferencePage(name, checked) {
 
 const row_number = /row[\d]+/;
 const column_number = /name[\d]+/;
+/**
+ * @param {string} id 
+ * @returns {string | undefined}
+ */
 function convertSkill(id) {
   let _a, _b;
   return skills[(_a = row_number.exec(id)) ? _a[0] : void 0][(_b = column_number.exec(id)) ? _b[0] : void 0];

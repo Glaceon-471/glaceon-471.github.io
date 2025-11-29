@@ -1,5 +1,4 @@
 /_site
 /node_modules
 
-Gemfile.lock
-package-lock.json
+/assets/css/tailwind.css

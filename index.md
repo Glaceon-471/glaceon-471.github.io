@@ -4,7 +4,7 @@ layout: default
 title: ホーム
 ---
 
-# [CcfoliaExport](/ccfolia_export)
+# [Ccfolia Export](/ccfolia_export)
 キャラクター保管庫で作られた複数のシステムのキャラシートをココフォリアに出力するサイトです。
 
 ## 現在対応しているシステム
