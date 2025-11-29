@@ -37,6 +37,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install npm Packages
+        run: npm install --omit=dev
+      - name: Setup TailwindCSS
+        run: npm run postcss:create
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@v1
@@ -44,12 +48,6 @@ jobs:
           ruby-version: '3.2' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
-      - name: Install npm Packages
-        run: npm install --omit=dev
-      - name: Setup TailwindCSS
-        run: npm run postcss:create
-      - name: Install Gem Packages
-        run: bundle install
       - name: Jekyll Build
         run: bundle exec jekyll build
       - name: Upload artifact
