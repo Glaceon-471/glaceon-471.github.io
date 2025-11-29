@@ -23,9 +23,9 @@
   "homepage": "https://github.com/Glaceon-471/github.glaceon-471.io#readme",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.14",
-    "autoprefixer": "^10.4.22",
     "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1"
+    "postcss-cli": "^11.0.1",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.10.0",
