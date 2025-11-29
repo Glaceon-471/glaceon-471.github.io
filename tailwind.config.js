@@ -11,6 +11,6 @@ export default {
   },
   plugins: [],
   corePlugins: {
-    preflight: true, // デフォルト: true
+    preflight: true,
   }
 }

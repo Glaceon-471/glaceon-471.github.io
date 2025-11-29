@@ -4,11 +4,10 @@
   "description": "Glaceon-471's Tools and Pages",
   "main": "index.js",
   "scripts": {
-    "postcss:create": "npx postcss ./assets/css/tailwind.before.css -o ./assets/css/tailwind.css",
-    "format:prettier": "npx prettier -w \"${0}\"",
-    "format:stylelint": "npx stylelint \"${0}\" --fix",
-    "format:all": "npm run format:prettier \"./**/*.{html,js,css}\" ; npm run format:stylelint \"./**/*.css\"",
-    "jekyll:test": "call bundle exec jekyll serve"
+    "tailwindcss:create": "tailwindcss -i ./assets/css/tailwind.before.css -o ./assets/css/tailwind.css",
+    "format:prettier": "prettier -w \"${0}\"",
+    "format:stylelint": "stylelint \"${0}\" --fix",
+    "format:all": "npm run format:prettier \"./**/*.{html,js,css}\" ; npm run format:stylelint \"./**/*.css\""
   },
   "repository": {
     "type": "git",
@@ -22,14 +21,10 @@
   },
   "homepage": "https://github.com/Glaceon-471/github.glaceon-471.io#readme",
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.14",
-    "postcss": "^8.5.6",
-    "postcss-cli": "^11.0.1",
-    "tailwindcss": "^4.1.17"
+    "@tailwindcss/cli": "^4.1.17"
   },
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.10.0",
-    "onchange": "^7.1.0",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-tailwindcss": "^0.6.14",
