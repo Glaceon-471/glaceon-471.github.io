@@ -1,5 +1,5 @@
 ---
-layout: ccfolia_export/base
+layout: ccfolia_export/secret_type
 
 id: shinobigami
 post_scripts:
@@ -91,43 +91,54 @@ title: シノビガミ
     <option value="standard">標準</option>
     <option value="brief">簡略</option>
     <option value="expansion">拡張</option>
+    <option value="recommended">おすすめ</option>
     <option value="custom">カスタム</option>
   </select>
   <label class="block"><input class="mr-2" id="add_brackets_ninpou_name" type="checkbox" checked />忍法名に【】を付ける (すでに付いている場合はスキップ)</label>
   <label class="block"><input class="mr-2" id="add_brackets_designated_specialties" type="checkbox" checked />指定特技に《》を付ける (すでに付いている場合はスキップ)</label>
   <label class="block"><input class="mr-2" id="add_p_page" type="checkbox" checked />参照ページにPを付ける (すでに付いている場合はスキップ)</label>
+  <label class="block"><input class="mr-2" id="use_password" type="checkbox" />パスワードを使用する</label>
   <label class="block"><input class="mr-2" id="mention_url" type="checkbox" />キャラクターシートのURLを記載する</label>
 </div>
 
 <div class="rounded border border-gray-300 p-4" id="ninpou">
   <label class="block font-medium">忍法の形式</label>
-  <label class="block"><input class="mr-2" id="mention_name" type="checkbox" checked />忍法名を記載する</label>
   <label class="block"><input class="mr-2" id="mention_type" type="checkbox" />忍法タイプを記載する</label>
   <label class="block"><input class="mr-2" id="mention_target_skill" type="checkbox" checked />指定特技を記載する</label>
-  <label class="block"><input class="mr-2" id="mention_range" type="checkbox" />間合を記載する</label>
+  <label class="block"><input class="mr-2" id="mention_range" type="checkbox" checked />間合を記載する</label>
   <label class="block"><input class="mr-2" id="mention_cost" type="checkbox" checked />コストを記載する</label>
-  <label class="block"><input class="mr-2" id="mention_page" type="checkbox" />参照ページを記載する</label>
+  <label class="block"><input class="mr-2" id="mention_page" type="checkbox" checked />参照ページを記載する</label>
 </div>
 
 <div class="rounded border border-gray-300 p-4" id="background">
   <label class="block font-medium">背景の形式</label>
-  <label class="block"><input class="mr-2" id="mention_name" type="checkbox" checked />背景名を記載する</label>
-  <label class="block"><input class="mr-2" id="mention_type" type="checkbox" checked />背景タイプを記載する</label>
-  <label class="block"><input class="mr-2" id="mention_page" type="checkbox" />参照ページを記載する</label>
+  <label class="block"><input class="mr-2" id="mention_type" type="checkbox" />背景タイプを記載する</label>
+  <label class="block"><input class="mr-2" id="mention_page" type="checkbox" checked />参照ページを記載する</label>
 </div>
 
 <div class="rounded border border-gray-300 p-4" id="personalities">
   <label class="block font-medium">人物の形式</label>
-  <label class="block"><input class="mr-2" id="mention_name" type="checkbox" checked />人物名を記載する</label>
-  <label class="block"><input class="mr-2" id="mention_place" type="checkbox" />居所所持を記載する</label>
+  <label class="block"><input class="mr-2" id="mention_place" type="checkbox" checked />居所所持を記載する</label>
   <label class="block"><input class="mr-2" id="mention_secret" type="checkbox" checked />秘密所持を記載する</label>
   <label class="block"><input class="mr-2" id="mention_special_effect" type="checkbox" checked />奥義情報所持を記載する</label>
   <label class="block"><input class="mr-2" id="mention_emotion" type="checkbox" checked />感情を記載する</label>
 </div>
 
+<div class="rounded border border-gray-300 p-4" id="special_effect">
+  <label class="block font-medium">奥義の形式</label>
+  <label class="block"><input class="mr-2" id="mention_skill" type="checkbox" checked />指定特技を記載する</label>
+  <label class="block"><input class="mr-2" id="mention_effect" type="checkbox" checked />効果を記入する</label>
+  <label class="block"><input class="mr-2" id="mention_page" type="checkbox" checked />参照ページを記載する</label>
+</div>
+
+<div class="rounded border border-gray-300 p-4" id="item">
+  <label class="block font-medium">忍具の形式</label>
+  <label class="block"><input class="mr-2" id="mention_effect" type="checkbox" checked />効果を記入する</label>
+</div>
+
 <div class="rounded border border-gray-300 p-4" id="memo">
   <label class="block font-medium">メモの形式</label>
-  <label class="block"><input class="mr-2" id="mention_pl_name" type="checkbox" checked />PL名を記載する</label>
+  <label class="block"><input class="mr-2" id="mention_player" type="checkbox" />PL名を記載する</label>
   <label class="block"><input class="mr-2" id="mention_sex" type="checkbox" checked />性別を記載する</label>
   <label class="block"><input class="mr-2" id="mention_age" type="checkbox" checked />年齢を記載する</label>
   <label class="block"><input class="mr-2" id="mention_cover" type="checkbox" checked />表の顔を表記する</label>
@@ -138,18 +149,19 @@ title: シノビガミ
   <label class="block"><input class="mr-2" id="mention_stylerule" type="checkbox" checked />流儀を記載する</label>
   <label class="block"><input class="mr-2" id="mention_foe" type="checkbox" checked />仇敵を記載する</label>
   <label class="block"><input class="mr-2" id="mention_level" type="checkbox" checked />階級を記載する</label>
-  <label class="block"><input class="mr-2" id="mention_mission" type="checkbox" checked />使命を記入する</label>
   <label class="block"><input class="mr-2" id="mention_memo" type="checkbox" />メモを記載する</label>
   <label class="block"><input class="mr-2" id="mention_ninpou" type="checkbox" />忍法を記載する</label>
   <label class="block"><input class="mr-2" id="mention_background" type="checkbox" />背景を記載する</label>
   <label class="block"><input class="mr-2" id="mention_personalities" type="checkbox" checked />人物を記載する</label>
+  <label class="block"><input class="mr-2" id="mention_modulation_field" type="checkbox" checked />変調記載欄を記載する</label>
+  <label class="block"><input class="mr-2" id="mention_special_effect_field" type="checkbox" checked />奥義記載欄を記載する</label>
 </div>
 
 <div class="rounded border border-gray-300 p-4" id="status">
   <label class="block font-medium">ステータスの形式</label>
   <label class="block"><input class="mr-2" id="compile_vitality" type="checkbox" />生命力をまとめる</label>
   <label class="block"><input class="mr-2" id="additional_vitality" type="checkbox" />追加生命力を追加する</label>
-  <label class="block"><input class="mr-2" id="three_values" type="checkbox" checked />目標・スペシャル・ファンブル値を追加する</label>
+  <label class="block"><input class="mr-2" id="four_values" type="checkbox" checked />目標・スペシャル・ファンブル・補正値を追加する</label>
   <label class="block"><input class="mr-2" id="cost" type="checkbox" checked />使用可能コストを追加する</label>
 </div>
 
@@ -157,4 +169,8 @@ title: シノビガミ
   <label class="block font-medium">チャットパレットの形式</label>
   <label class="block"><input class="mr-2" id="mention_skill" type="checkbox" checked />修得特技を記載する</label>
   <label class="block"><input class="mr-2" id="mention_ninpou" type="checkbox" checked />忍法を記載する</label>
+  <label class="block"><input class="mr-2" id="mention_hidden_skill" type="checkbox" checked />隠し修得特技を記載する <span class="text-red-800">(要パスワード)</span></label>
+  <label class="block"><input class="mr-2" id="mention_hidden_ninpou" type="checkbox" checked />隠し忍法を記載する <span class="text-red-800">(要パスワード)</span></label>
+  <label class="block"><input class="mr-2" id="mention_special_effect" type="checkbox" checked />奥義を記載する <span class="text-red-800">(要パスワード)</span></label>
+  <label class="block"><input class="mr-2" id="mention_item" type="checkbox" />忍具を記載する <span class="text-red-800">(要パスワード)</span></label>
 </div>

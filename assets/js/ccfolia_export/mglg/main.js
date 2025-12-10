@@ -1,243 +1,173 @@
-const all_format_type = getOption("base", "format_type");
-const all_add_brackets_magic_name = getOption("base", "add_brackets_magic_name");
-const all_add_brackets_designated_specialties = getOption("base", "add_brackets_designated_specialties");
-const all_add_p_page = getOption("base", "add_p_page");
-const all_mention_url = getOption("base", "mention_url");
-
-const library_mention_name = getOption("library", "mention_name");
-const library_mention_type = getOption("library", "mention_type");
-const library_mention_skill = getOption("library", "mention_skill");
-const library_mention_target = getOption("library", "mention_target");
-const library_mention_mana = getOption("library", "mention_mana");
-const library_mention_page = getOption("library", "mention_page");
-
-const anchor_mention_name = getOption("anchor", "mention_name");
-const anchor_mention_destiny = getOption("anchor", "mention_destiny");
-const anchor_mention_attribute = getOption("anchor", "mention_attribute");
-
-const memo_mention_magic_name = getOption("memo", "mention_magic_name");
-const memo_mention_sex = getOption("memo", "mention_sex");
-const memo_mention_age = getOption("memo", "mention_age");
-const memo_mention_level = getOption("memo", "mention_level");
-const memo_mention_domain = getOption("memo", "mention_domain");
-const memo_mention_attribute = getOption("memo", "mention_attribute");
-const memo_mention_career = getOption("memo", "mention_career");
-const memo_mention_belief = getOption("memo", "mention_belief");
-const memo_mention_cover = getOption("memo", "mention_cover");
-const memo_mention_memo = getOption("memo", "mention_memo");
-const memo_mention_true_form = getOption("memo", "mention_true_form");
-const memo_mention_true_form_effect = getOption("memo", "mention_true_form_effect");
-const memo_mention_soul_skill = getOption("memo", "mention_soul_skill");
-const memo_mention_library = getOption("memo", "mention_library");
-const memo_mention_anchor = getOption("memo", "mention_anchor");
-
-const chat_palette_mention_magic_name = getOption("chat_palette", "mention_magic_name");
-const chat_palette_mention_true_form = getOption("chat_palette", "mention_true_form");
-const chat_palette_mention_skill = getOption("chat_palette", "mention_skill");
-const chat_palette_mention_library = getOption("chat_palette", "mention_library");
-
-all_format_type.onchange = function () {
-  switch (all_format_type.value) {
+options.base.format_type.onchange = function () {
+  switch (options.base.format_type.value) {
     case "standard":
       // 蔵書の形式
-      library_mention_name.checked = true;
-      library_mention_type.checked = false;
-      library_mention_skill.checked = true;
-      library_mention_target.checked = false;
-      library_mention_mana.checked = true;
-      library_mention_page.checked = false;
-      
+      options.library.mention_type.checked = false;
+      options.library.mention_skill.checked = true;
+      options.library.mention_target.checked = false;
+      options.library.mention_mana.checked = true;
+      options.library.mention_page.checked = false;
+
       // アンカーの形式
-      anchor_mention_name.checked = true;
-      anchor_mention_destiny.checked = true;
-      anchor_mention_attribute.checked = true;
-      
+      options.anchor.mention_destiny.checked = true;
+      options.anchor.mention_attribute.checked = true;
+
       // メモの形式
-      memo_mention_magic_name.checked = true;
-      memo_mention_sex.checked = true;
-      memo_mention_age.checked = true;
-      memo_mention_level.checked = true;
-      memo_mention_domain.checked = false;
-      memo_mention_attribute.checked = false;
-      memo_mention_career.checked = true;
-      memo_mention_belief.checked = false;
-      memo_mention_cover.checked = true;
-      memo_mention_memo.checked = false;
-      memo_mention_true_form.checked = false;
-      memo_mention_true_form_effect.checked = false;
-      memo_mention_soul_skill.checked = false;
-      memo_mention_library.checked = false;
-      memo_mention_anchor.checked = false;
-      
+      options.memo.mention_magic_name.checked = true;
+      options.memo.mention_sex.checked = true;
+      options.memo.mention_age.checked = true;
+      options.memo.mention_level.checked = true;
+      options.memo.mention_domain.checked = false;
+      options.memo.mention_attribute.checked = false;
+      options.memo.mention_career.checked = true;
+      options.memo.mention_belief.checked = false;
+      options.memo.mention_cover.checked = true;
+      options.memo.mention_memo.checked = false;
+      options.memo.mention_true_form.checked = false;
+      options.memo.mention_true_form_effect.checked = false;
+      options.memo.mention_soul_skill.checked = false;
+      options.memo.mention_library.checked = false;
+      options.memo.mention_anchor.checked = false;
+
       // チャットパレットの形式
-      chat_palette_mention_magic_name.checked = false;
-      chat_palette_mention_true_form.checked = true;
-      chat_palette_mention_skill.checked = true;
-      chat_palette_mention_library.checked = true;
+      options.chat_palette.mention_magic_name.checked = false;
+      options.chat_palette.mention_true_form.checked = true;
+      options.chat_palette.mention_skill.checked = true;
+      options.chat_palette.mention_library.checked = true;
       break;
     case "brief":
       // 蔵書の形式
-      library_mention_name.checked = true;
-      library_mention_type.checked = false;
-      library_mention_skill.checked = true;
-      library_mention_target.checked = false;
-      library_mention_mana.checked = false;
-      library_mention_page.checked = false;
-      
+      options.library.mention_type.checked = false;
+      options.library.mention_skill.checked = true;
+      options.library.mention_target.checked = false;
+      options.library.mention_mana.checked = false;
+      options.library.mention_page.checked = false;
+
+      // アンカーの形式
+      options.anchor.mention_destiny.checked = false;
+      options.anchor.mention_attribute.checked = false;
+
       // メモの形式
-      memo_mention_magic_name.checked = true;
-      memo_mention_sex.checked = false;
-      memo_mention_age.checked = false;
-      memo_mention_level.checked = true;
-      memo_mention_domain.checked = false;
-      memo_mention_attribute.checked = false;
-      memo_mention_career.checked = true;
-      memo_mention_belief.checked = false;
-      memo_mention_cover.checked = true;
-      memo_mention_memo.checked = false;
-      memo_mention_true_form.checked = false;
-      memo_mention_true_form_effect.checked = false;
-      memo_mention_soul_skill.checked = false;
-      memo_mention_library.checked = false;
-      memo_mention_anchor.checked = false;
-      
+      options.memo.mention_magic_name.checked = true;
+      options.memo.mention_sex.checked = false;
+      options.memo.mention_age.checked = false;
+      options.memo.mention_level.checked = true;
+      options.memo.mention_domain.checked = false;
+      options.memo.mention_attribute.checked = false;
+      options.memo.mention_career.checked = true;
+      options.memo.mention_belief.checked = false;
+      options.memo.mention_cover.checked = true;
+      options.memo.mention_memo.checked = false;
+      options.memo.mention_true_form.checked = false;
+      options.memo.mention_true_form_effect.checked = false;
+      options.memo.mention_soul_skill.checked = false;
+      options.memo.mention_library.checked = false;
+      options.memo.mention_anchor.checked = false;
+
       // チャットパレットの形式
-      chat_palette_mention_magic_name.checked = false;
-      chat_palette_mention_true_form.checked = false;
-      chat_palette_mention_skill.checked = false;
-      chat_palette_mention_library.checked = true;
+      options.chat_palette.mention_magic_name.checked = false;
+      options.chat_palette.mention_true_form.checked = false;
+      options.chat_palette.mention_skill.checked = false;
+      options.chat_palette.mention_library.checked = true;
       break;
     case "expansion":
       // 蔵書の形式
-      library_mention_name.checked = true;
-      library_mention_type.checked = true;
-      library_mention_skill.checked = true;
-      library_mention_target.checked = true;
-      library_mention_mana.checked = true;
-      library_mention_page.checked = false;
-      
+      options.library.mention_type.checked = true;
+      options.library.mention_skill.checked = true;
+      options.library.mention_target.checked = true;
+      options.library.mention_mana.checked = true;
+      options.library.mention_page.checked = false;
+
+      // アンカーの形式
+      options.anchor.mention_destiny.checked = true;
+      options.anchor.mention_attribute.checked = true;
+
       // メモの形式
-      memo_mention_magic_name.checked = true;
-      memo_mention_sex.checked = true;
-      memo_mention_age.checked = true;
-      memo_mention_level.checked = true;
-      memo_mention_domain.checked = true;
-      memo_mention_attribute.checked = true;
-      memo_mention_career.checked = true;
-      memo_mention_belief.checked = true;
-      memo_mention_cover.checked = true;
-      memo_mention_memo.checked = false;
-      memo_mention_true_form.checked = true;
-      memo_mention_true_form_effect.checked = true;
-      memo_mention_soul_skill.checked = true;
-      memo_mention_library.checked = true;
-      memo_mention_anchor.checked = true;
-      
+      options.memo.mention_magic_name.checked = true;
+      options.memo.mention_sex.checked = true;
+      options.memo.mention_age.checked = true;
+      options.memo.mention_level.checked = true;
+      options.memo.mention_domain.checked = true;
+      options.memo.mention_attribute.checked = true;
+      options.memo.mention_career.checked = true;
+      options.memo.mention_belief.checked = true;
+      options.memo.mention_cover.checked = true;
+      options.memo.mention_memo.checked = false;
+      options.memo.mention_true_form.checked = true;
+      options.memo.mention_true_form_effect.checked = true;
+      options.memo.mention_soul_skill.checked = true;
+      options.memo.mention_library.checked = true;
+      options.memo.mention_anchor.checked = true;
+
       // チャットパレットの形式
-      chat_palette_mention_magic_name.checked = true;
-      chat_palette_mention_true_form.checked = true;
-      chat_palette_mention_skill.checked = true;
-      chat_palette_mention_library.checked = true;
+      options.chat_palette.mention_magic_name.checked = true;
+      options.chat_palette.mention_true_form.checked = true;
+      options.chat_palette.mention_skill.checked = true;
+      options.chat_palette.mention_library.checked = true;
       break;
   }
 };
 
-document.querySelectorAll("#option div:not(#base) input[type=\"checkbox\"]").forEach(element => {
+document.querySelectorAll('#option div:not(#base) input[type="checkbox"]').forEach((element) => {
   element.onchange = function () {
-    all_format_type.value = "custom";
+    base_format_type.value = "custom";
   };
 });
 
-function resultGenerate(data) {
-  const url = character_sheets_url.value;
-  const url_type = checkURL(url);
-  const library = [];
-  const anchor = [];
+function setAddCornerBrackets(name) {
+  return checkAddCornerBrackets(name, options.base.add_brackets_magic_name.checked);
+}
+
+function setAddDoubleParentheses(name) {
+  return checkAddDoubleParentheses(name, options.base.add_brackets_designated_specialties.checked);
+}
+
+function setAddPReferencePage(name) {
+  return checkAddPReferencePage(name, options.base.add_p_page.checked);
+}
+
+function setResult(datas) {
+  const public = datas[0];
   const status = [];
   const params = [];
   const memo = [];
   const chat_palette = [];
-  
-  /**
-   * @param {String} base 
-   * @param  {...String} args 
-   */
-  function add_memo(base, ...args) {
-    if (args.findIndex(x => checkBlank(x)) != -1) return;
-    for (const [index, element] of args.entries()) {
-      base = base.replace(new RegExp(`\\{${index}\\}`, "g"), element);
+  const chat_palette_variable = [];
+
+  status.push({ label: "魔力", value: 0, max: 0 });
+  status.push({ label: "一時的魔力", value: 0, max: 0 });
+  if (public.library.length > 0) {
+    const max = !checkBlank(public.base.source) ? Number.parseInt(public.base.source) : 0;
+    for (const book of public.library) {
+      if (checkBlank(book.name)) continue;
+      const label = [];
+      label.push(book.name.replace("\n", " "));
+      if (!checkBlank(book.cost)) label.push(book.cost.replace("\n", " "));
+      status.push({ label: label.join(" "), value: 0, max: max });
     }
-    memo.push(base);
   }
-  
-  for (const book of data.library) {
-    const book_data = [];
-    const status_label = [];
-    if (!checkBlank(book.name)) {
-      if (library_mention_name.checked) book_data.push(checkAddCornerBrackets(book.name, all_add_brackets_magic_name.checked).replace("\n", " "));
-      status_label.push(checkAddCornerBrackets(book.name, all_add_brackets_magic_name.checked).replace("\n", " "));
-    }
-    if (library_mention_type.checked && !checkBlank(book.type)) book_data.push(book.type.replace("\n", " "));
-    if (library_mention_skill.checked && !checkBlank(book.skill)) book_data.push(checkAddDoubleParentheses(book.skill, all_add_brackets_designated_specialties.checked).replace("\n", " "));
-    if (library_mention_target.checked && !checkBlank(book.target)) book_data.push(book.target.replace("\n", " "));
-    if (!checkBlank(book.cost)) {
-      if (library_mention_mana.checked) book_data.push(book.cost.replace("\n", " "));
-      status_label.push(book.cost.replace("\n", " "));
-    }
-    if (library_mention_page.checked && !checkBlank(book.page)) book_data.push(checkAddPReferencePage(book.page, all_add_p_page.checked).replace("\n", " "));
-    library.push(book_data.join(" "));
-    
-    status.push({
-      label: status_label.join(" "),
-      value: 0,
-      max: !checkBlank(data.base.source) ? Number.parseInt(data.base.source) : 0
-    });
+  if (!checkBlank(public.base.attack)) {
+    params.push({ label: "攻撃力", value: public.base.attack });
   }
-  
-  for (const character of data.anchor) {
-    const anchor_data = [];
-    if (anchor_mention_name.checked && !checkBlank(character.name)) anchor.push(character.name.replace("\n", " "));
-    if (anchor_mention_destiny.checked && !checkBlank(character.destiny)) anchor.push(`運命点 : ${character.destiny.replace("\n", " ")}`);
-    if (anchor_mention_attribute.checked && !checkBlank(character.attribute)) anchor.push(`属性 : ${character.attribute.replace("\n", " ")}`);
-    anchor.push(anchor_data.join(", "));
+  if (!checkBlank(public.base.defense)) {
+    params.push({ label: "防御力", value: public.base.defense });
   }
-  
-  status.push({
-    label: "魔力",
-    value: 0,
-    max: 0
-  });
-  status.push({
-    label: "一時的魔力",
-    value: 0,
-    max: 0
-  });
-  if (!checkBlank(data.base.attack)) {
-    params.push({
-      "label": "攻撃力",
-      value: data.base.attack
-    });
+  if (!checkBlank(public.base.source)) {
+    params.push({ label: "根源力", value: public.base.source });
   }
-  if (!checkBlank(data.base.defense)) {
-    params.push({
-      "label": "防御力",
-      value: data.base.defense
-    });
-  }
-  if (!checkBlank(data.base.source)) {
-    params.push({
-      "label": "根源力",
-      value: data.base.source
-    });
-  }
-  
-  if (memo_mention_magic_name.checked && !checkBlank(data.base.magicname)) add_memo("魔法名 : {0}", data.base.magicname);
-  if (memo_mention_sex.checked && !checkBlank(data.base.sex)) add_memo("性別 : {0}", data.base.sex);
-  if (memo_mention_age.checked && !checkBlank(data.base.age)) add_memo("年齢 : {0}", data.base.age);
-  if (memo_mention_level.checked && !checkBlank(data.base.level) && !checkBlank(data.base.levelname)) add_memo("第{0}階梯{1}", data.base.level, data.base.levelname);
-  if (memo_mention_domain.checked) {
-    var domain;
-    switch(data.base.domain) {
+  params.push({ label: "シーン表", value: "ST" });
+  params.push({ label: "運命属性表", value: "FAT" });
+  params.push({ label: "事件表", value: "AT" });
+  params.push({ label: "ファンブル表", value: "FT" });
+  params.push({ label: "変調表", value: "WT" });
+
+  if (options.memo.mention_magic_name.checked && !checkBlank(public.base.magicname)) memo.push(`魔法名: ${public.base.magicname}`);
+  if (options.memo.mention_sex.checked && !checkBlank(public.base.sex)) memo.push(`性別: ${public.base.sex}`);
+  if (options.memo.mention_age.checked && !checkBlank(public.base.age)) memo.push(`年齢: ${public.base.age}`);
+  if (options.memo.mention_level.checked && !checkBlank(public.base.level) && !checkBlank(public.base.levelname)) memo.push(`第${public.base.level}階梯${public.base.levelname}`);
+  if (options.memo.mention_domain.checked) {
+    let domain = "獣";
+    switch (public.base.domain) {
       case "a":
         domain = "星";
         break;
@@ -257,45 +187,112 @@ function resultGenerate(data) {
         domain = "闇";
         break;
     }
-    add_memo("領域 : {0}", domain);
+    memo.push(`領域: ${domain}`);
   }
-  if (memo_mention_attribute.checked && !checkBlank(data.base.attack) && !checkBlank(data.base.defense) && !checkBlank(data.base.source)) 
-    add_memo("攻撃力 : {0}, 防御力 : {1}, 根源力 : {2}", data.base.attack, data.base.defense, data.base.source);
-  if (memo_mention_career.checked && !checkBlank(data.base.career)) add_memo("経歴/機関 : {0}", data.base.career);
-  if (memo_mention_belief.checked && !checkBlank(data.base.belief)) add_memo("信念 : {0}", data.base.belief);
-  if (memo_mention_cover.checked && !checkBlank(data.base.cover)) add_memo("表の顔 : {0}", data.base.cover);
-  if (memo_mention_memo.checked && !checkBlank(data.base.memo)) add_memo("メモ :\n{0}", data.base.memo);
-  if (memo_mention_true_form.checked && !checkBlank(data.trueform.name)) add_memo("真の姿 : {0}", data.trueform.name);
-  if (memo_mention_true_form_effect.checked && !checkBlank(data.trueform.effect)) add_memo("真の姿の効果 : {0}", data.trueform.effect);
-  if (memo_mention_soul_skill.checked && !checkBlank(data.soul.skill)) add_memo("魂の特技 : {0}", data.soul.skill);
-  if (memo_mention_library.checked && library.length > 0) add_memo("蔵書 :\n{0}", library.join("\n"));
-  if (memo_mention_anchor.checked && anchor.length > 0) add_memo("アンカー :\n{0}", anchor.join("\n"));
-  
-  if (chat_palette_mention_magic_name.checked && !checkBlank(data.base.magicname)) chat_palette.push(`@魔法名\n${data.base.magicname}`);
-  if (chat_palette_mention_true_form.checked && !checkBlank(data.trueform.name) && !checkBlank(data.trueform.effect))
-    chat_palette.push(`@真の姿\n${data.trueform.name} ${data.trueform.effect}`);
-  if (chat_palette_mention_skill.checked) {
+  if (options.memo.mention_attribute.checked && !checkBlank(public.base.attack) && !checkBlank(public.base.defense) && !checkBlank(public.base.source))
+    memo.push(`攻撃力: ${public.base.attack}, 防御力: ${public.base.defense}, 根源力: ${public.base.source}`);
+  if (options.memo.mention_career.checked && !checkBlank(public.base.career)) memo.push(`経歴/機関: ${public.base.career}`);
+  if (options.memo.mention_belief.checked && !checkBlank(public.base.belief)) memo.push(`信念: ${public.base.belief}`);
+  if (options.memo.mention_cover.checked && !checkBlank(public.base.cover)) memo.push(`表の顔: ${public.base.cover}`);
+  if (options.memo.mention_memo.checked && !checkBlank(public.base.memo)) memo.push(`メモ:\n${public.base.memo}`);
+  if (options.memo.mention_true_form.checked && !checkBlank(public.trueform.name)) memo.push(`真の姿: ${public.trueform.name}`);
+  if (options.memo.mention_true_form_effect.checked && !checkBlank(public.trueform.effect)) memo.push(`真の姿の効果: ${public.trueform.effect}`);
+  if (options.memo.mention_soul_skill.checked && !checkBlank(public.soul.skill)) memo.push(`魂の特技: ${public.soul.skill}`);
+  if (options.memo.mention_library.checked && public.library.length > 0) {
+    const library = [];
+    for (const book of public.library) {
+      const book_data = [];
+      book_data.push(setAddCornerBrackets(book.name).replace("\n", " "));
+      if (options.library.mention_type.checked && !checkBlank(book.type)) book_data.push(book.type.replace("\n", " "));
+      if (options.library.mention_skill.checked && !checkBlank(book.skill)) book_data.push(setAddDoubleParentheses(book.skill).replace("\n", " "));
+      if (options.library.mention_target.checked && !checkBlank(book.target)) book_data.push(book.target.replace("\n", " "));
+      if (options.library.mention_mana.checked && !checkBlank(book.cost)) book_data.push(book.cost.replace("\n", " "));
+      if (options.library.mention_page.checked && !checkBlank(book.page)) book_data.push(setAddPReferencePage(book.page).replace("\n", " "));
+      library.push(book_data.join(" "));
+    }
+    memo.push(`蔵書:\n${library.join("\n")}`);
+  }
+  if (options.memo.mention_anchor.checked && public.anchor.length > 0) {
+    const anchor = [];
+    for (const character of public.anchor) {
+      if (checkBlank(character.name)) continue;
+      const anchor_data = [];
+      anchor_data.push(character.name.replace("\n", " "));
+      if (options.anchor.mention_destiny.checked && !checkBlank(character.destiny)) anchor_data.push(`運命点: ${character.destiny.replace("\n", " ")}`);
+      if (options.anchor.mention_attribute.checked && !checkBlank(character.attribute)) anchor_data.push(`属性: ${character.attribute.replace("\n", " ")}`);
+      anchor.push(anchor_data.join(", "));
+    }
+    memo.push(`アンカー:\n${anchor.join("\n")}`);
+  }
+
+  chat_palette.push("@各種表\n{シーン表を振る}\n{運命属性表を振る}\n{事件表を振る}\n{ファンブル表を振る}\n{変調表を振る}");
+  chat_palette_variable.push("シーン表を振る={シーン表}");
+  chat_palette_variable.push("運命属性表を振る={運命属性表}");
+  chat_palette_variable.push("事件表を振る={事件表}");
+  chat_palette_variable.push("ファンブル表を振る={ファンブル表}");
+  chat_palette_variable.push("変調表を振る={変調表}");
+
+  const battle_chat_palette = [];
+  if (options.chat_palette.mention_magic_name.checked && !checkBlank(public.base.magicname)) {
+    battle_chat_palette.push("{魔法名を名乗る}");
+    chat_palette_variable.push(`魔法名を名乗る=${public.base.magicname}`);
+  }
+  if (options.chat_palette.mention_true_form.checked && !checkBlank(public.trueform.name) && !checkBlank(public.trueform.effect)) {
+    battle_chat_palette.push("{真の姿を解放する}");
+    chat_palette_variable.push(`真の姿を解放する=${public.trueform.name} ${public.trueform.effect}`);
+  }
+  if (battle_chat_palette.length > 0) chat_palette.push(`@呪圏系\n${battle_chat_palette.join("\n")}`);
+
+  if (options.chat_palette.mention_skill.checked) {
     const learned = [];
-    for (const element of data.learned) {
+    for (const element of public.learned) {
       if (checkBlank(element.id)) continue;
-      learned.push(`2d6>=5 （判定 : ${convertSkill(element.id)}）`);
+      learned.push(`2d6>=5 (判定 : ${convertSkill(element.id)})`);
     }
     if (learned.length > 0) chat_palette.push(`@修得特技\n${learned.join("\n")}`);
   }
-  if (chat_palette_mention_library.checked && library.length > 0) chat_palette.push(`@蔵書\n${library.join("\n")}`);
-  
+
+  if (options.chat_palette.mention_library.checked && public.library.length > 0) {
+    const library = [];
+    for (const book of public.library) {
+      const book_data = [];
+      book_data.push(setAddCornerBrackets(book.name).replace("\n", " "));
+      if (options.library.mention_type.checked && !checkBlank(book.type)) book_data.push(book.type.replace("\n", " "));
+      if (options.library.mention_skill.checked && !checkBlank(book.skill)) book_data.push(setAddDoubleParentheses(book.skill).replace("\n", " "));
+      if (options.library.mention_target.checked && !checkBlank(book.target)) book_data.push(book.target.replace("\n", " "));
+      if (options.library.mention_mana.checked && !checkBlank(book.cost)) book_data.push(book.cost.replace("\n", " "));
+      if (options.library.mention_page.checked && !checkBlank(book.page)) book_data.push(setAddPReferencePage(book.page).replace("\n", " "));
+      const name = checkAddCornerBrackets(book.name, false).replace("\n", " ");
+      library.push(`{${name}}`);
+      chat_palette_variable.push(`${name}=${book_data.join(" ")}`);
+    }
+    chat_palette.push(`@蔵書\n${library.join("\n")}`);
+  }
+
+  chat_palette.push(`@チャントパレット変数\n${chat_palette_variable.map((value) => `//${value}`).join("\n")}`);
+
+  const url = character_sheets_url.value;
+  let externalUrl = "";
+  switch (checkURL(url)) {
+    case 0:
+      externalUrl = url;
+      break;
+    case 1:
+      externalUrl = `https://character-sheets.appspot.com/mglg/edit.html?key=${url}`;
+      break;
+  }
   const json = {
     kind: "character",
     data: {
-      name: data.base.covername,
+      name: public.base.covername,
       memo: memo.join("\n"),
       initiative: -1,
-      externalUrl: all_mention_url.checked && url_type == 1 ? url : "",
+      externalUrl: externalUrl,
       status: status,
       params: params,
       secret: true,
-      commands: chat_palette.join("\n\n")
-    }
+      commands: chat_palette.join("\n\n"),
+    },
   };
   ccfolia_result.value = JSON.stringify(json);
   memo_result.value = json.data.memo;

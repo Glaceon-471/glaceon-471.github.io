@@ -80,6 +80,7 @@
       const skills = {{ page.skills | jsonify }};
     </script>
     <script src="{{ '/assets/js/ccfolia_export/base.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/ccfolia_export/full_open_type.js' | relative_url }}"></script>
     {% if page.post_scripts %}
       {% for script in page.post_scripts %}
         <script src="{{ script | relative_url }}"></script>

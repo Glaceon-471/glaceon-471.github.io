@@ -11,10 +11,6 @@ exclude:
   - "package-lock.json"
   - "package.json"
   - "README.md"
-sass:
-  load_paths:
-    - _sass
-    - node_modules
 title: "Glaceon-471のツール置き場"
 
 titles:

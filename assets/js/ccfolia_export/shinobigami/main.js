@@ -1,306 +1,304 @@
-const all_format_type = getOption("base", "format_type");
-const all_add_brackets_ninpou_name = getOption("base", "add_brackets_ninpou_name");
-const all_add_brackets_designated_specialties = getOption("base", "add_brackets_designated_specialties");
-const all_add_p_page = getOption("base", "add_p_page");
-const all_mention_url = getOption("base", "mention_url");
-
-const ninpou_mention_name = getOption("ninpou", "mention_name");
-const ninpou_mention_type = getOption("ninpou", "mention_type");
-const ninpou_mention_target_skill = getOption("ninpou", "mention_target_skill");
-const ninpou_mention_range = getOption("ninpou", "mention_range");
-const ninpou_mention_cost = getOption("ninpou", "mention_cost");
-const ninpou_mention_page = getOption("ninpou", "mention_page");
-
-const background_mention_name = getOption("background", "mention_name");
-const background_mention_type = getOption("background", "mention_type");
-const background_mention_page = getOption("background", "mention_page");
-
-const personalities_mention_name = getOption("personalities", "mention_name");
-const personalities_mention_place = getOption("personalities", "mention_place");
-const personalities_mention_secret = getOption("personalities", "mention_secret");
-const personalities_mention_special_effect = getOption("personalities", "mention_special_effect");
-const personalities_mention_emotion = getOption("personalities", "mention_emotion");
-
-const memo_mention_pl_name = getOption("memo", "mention_pl_name");
-const memo_mention_sex = getOption("memo", "mention_sex");
-const memo_mention_age = getOption("memo", "mention_age");
-const memo_mention_cover = getOption("memo", "mention_cover");
-const memo_mention_belief = getOption("memo", "mention_belief");
-const memo_mention_race = getOption("memo", "mention_race");
-const memo_mention_upperstyle = getOption("memo", "mention_upperstyle");
-const memo_mention_substyle = getOption("memo", "mention_substyle");
-const memo_mention_stylerule = getOption("memo", "mention_stylerule");
-const memo_mention_foe = getOption("memo", "mention_foe");
-const memo_mention_level = getOption("memo", "mention_level");
-const memo_mention_mission = getOption("memo", "mention_mission");
-const memo_mention_memo = getOption("memo", "mention_memo");
-const memo_mention_ninpou = getOption("memo", "mention_ninpou");
-const memo_mention_background = getOption("memo", "mention_background");
-const memo_mention_personalities = getOption("memo", "mention_personalities");
-
-const status_compile_vitality = getOption("status", "compile_vitality");
-const status_additional_vitality = getOption("status", "additional_vitality");
-const status_three_values = getOption("status", "three_values");
-const status_cost = getOption("status", "cost");
-
-const chat_palette_mention_skill = getOption("chat_palette", "mention_skill");
-const chat_palette_mention_ninpou = getOption("chat_palette", "mention_ninpou");
-
-all_format_type.onchange = function () {
-  switch (all_format_type.value) {
+options.base.format_type.onchange = function () {
+  switch (options.base.format_type.value) {
     case "standard":
       // 忍法の形式
-      ninpou_mention_name.checked = true;
-      ninpou_mention_type.checked = false;
-      ninpou_mention_target_skill.checked = true;
-      ninpou_mention_range.checked = false;
-      ninpou_mention_cost.checked = true;
-      ninpou_mention_page.checked = false;
-      
+      options.ninpou.mention_type.checked = false;
+      options.ninpou.mention_target_skill.checked = true;
+      options.ninpou.mention_range.checked = true;
+      options.ninpou.mention_cost.checked = true;
+      options.ninpou.mention_page.checked = true;
+
       // 背景の形式
-      background_mention_name.checked = true;
-      background_mention_type.checked = true;
-      background_mention_page.checked = false;
-      
+      options.background.mention_type.checked = false;
+      options.background.mention_page.checked = true;
+
       // 人物の形式
-      personalities_mention_name.checked = true;
-      personalities_mention_place.checked = false;
-      personalities_mention_secret.checked = true;
-      personalities_mention_special_effect.checked = true;
-      personalities_mention_emotion.checked = true;
-      
+      options.personalities.mention_place.checked = true;
+      options.personalities.mention_secret.checked = true;
+      options.personalities.mention_special_effect.checked = true;
+      options.personalities.mention_emotion.checked = true;
+
+      // 奥義の形式
+      options.special_effect.mention_skill.checked = true;
+      options.special_effect.mention_effect.checked = true;
+      options.special_effect.mention_page.checked = true;
+
+      // 忍具の形式
+      options.item.mention_effect.checked = true;
+
       // メモの形式
-      memo_mention_pl_name.checked = true;
-      memo_mention_sex.checked = true;
-      memo_mention_age.checked = true;
-      memo_mention_cover.checked = true;
-      memo_mention_belief.checked = false;
-      memo_mention_race.checked = false;
-      memo_mention_upperstyle.checked = true;
-      memo_mention_substyle.checked = false;
-      memo_mention_stylerule.checked = true;
-      memo_mention_foe.checked = true;
-      memo_mention_level.checked = true;
-      memo_mention_mission.checked = true;
-      memo_mention_memo.checked = false;
-      memo_mention_ninpou.checked = false;
-      memo_mention_background.checked = false;
-      memo_mention_personalities.checked = true;
-      
+      options.memo.mention_player.checked = false;
+      options.memo.mention_sex.checked = true;
+      options.memo.mention_age.checked = true;
+      options.memo.mention_cover.checked = true;
+      options.memo.mention_belief.checked = false;
+      options.memo.mention_race.checked = false;
+      options.memo.mention_upperstyle.checked = true;
+      options.memo.mention_substyle.checked = false;
+      options.memo.mention_stylerule.checked = true;
+      options.memo.mention_foe.checked = true;
+      options.memo.mention_level.checked = true;
+      options.memo.mention_memo.checked = false;
+      options.memo.mention_ninpou.checked = false;
+      options.memo.mention_background.checked = false;
+      options.memo.mention_personalities.checked = true;
+      options.memo.mention_modulation_field.checked = true;
+      options.memo.mention_special_effect_field.checked = true;
+
       // ステータスの形式
-      status_compile_vitality.checked = false;
-      status_three_values.checked = true;
-      status_cost.checked = true;
-      
+      options.status.compile_vitality.checked = false;
+      options.status.four_values.checked = true;
+      options.status.cost.checked = true;
+
       // チャットパレットの形式
-      chat_palette_mention_skill.checked = true;
-      chat_palette_mention_ninpou.checked = true;
+      options.chat_palette.mention_skill.checked = true;
+      options.chat_palette.mention_ninpou.checked = true;
+      options.chat_palette.mention_hidden_skill.checked = true;
+      options.chat_palette.mention_hidden_ninpou.checked = true;
+      options.chat_palette.mention_special_effect.checked = true;
+      options.chat_palette.mention_item.checked = false;
       break;
     case "brief":
       // 忍法の形式
-      ninpou_mention_name.checked = true;
-      ninpou_mention_type.checked = false;
-      ninpou_mention_target_skill.checked = true;
-      ninpou_mention_range.checked = false;
-      ninpou_mention_cost.checked = false;
-      ninpou_mention_page.checked = false;
-      
+      options.ninpou.mention_type.checked = false;
+      options.ninpou.mention_target_skill.checked = true;
+      options.ninpou.mention_range.checked = true;
+      options.ninpou.mention_cost.checked = true;
+      options.ninpou.mention_page.checked = false;
+
       // 背景の形式
-      background_mention_name.checked = false;
-      background_mention_type.checked = false;
-      background_mention_page.checked = false;
-      
+      options.background.mention_type.checked = false;
+      options.background.mention_page.checked = false;
+
       // 人物の形式
-      memo_mention_pl_name.checked = true;
-      personalities_mention_name.checked = true;
-      personalities_mention_place.checked = false;
-      personalities_mention_secret.checked = false;
-      personalities_mention_special_effect.checked = true;
-      personalities_mention_emotion.checked = true;
-      
+      options.personalities.mention_place.checked = true;
+      options.personalities.mention_secret.checked = true;
+      options.personalities.mention_special_effect.checked = true;
+      options.personalities.mention_emotion.checked = true;
+
+      // 奥義の形式
+      options.special_effect.mention_skill.checked = true;
+      options.special_effect.mention_effect.checked = true;
+      options.special_effect.mention_page.checked = false;
+
+      // 忍具の形式
+      options.item.mention_effect.checked = false;
+
       // メモの形式
-      memo_mention_sex.checked = false;
-      memo_mention_age.checked = false;
-      memo_mention_cover.checked = false;
-      memo_mention_belief.checked = false;
-      memo_mention_race.checked = false;
-      memo_mention_upperstyle.checked = true;
-      memo_mention_substyle.checked = false;
-      memo_mention_stylerule.checked = true;
-      memo_mention_foe.checked = true;
-      memo_mention_level.checked = false;
-      memo_mention_mission.checked = true;
-      memo_mention_memo.checked = false;
-      memo_mention_ninpou.checked = false;
-      memo_mention_background.checked = false;
-      memo_mention_personalities.checked = false;
-      
+      options.memo.mention_player.checked = false;
+      options.memo.mention_sex.checked = false;
+      options.memo.mention_age.checked = false;
+      options.memo.mention_cover.checked = true;
+      options.memo.mention_belief.checked = false;
+      options.memo.mention_race.checked = false;
+      options.memo.mention_upperstyle.checked = true;
+      options.memo.mention_substyle.checked = false;
+      options.memo.mention_stylerule.checked = false;
+      options.memo.mention_foe.checked = false;
+      options.memo.mention_level.checked = true;
+      options.memo.mention_memo.checked = false;
+      options.memo.mention_ninpou.checked = false;
+      options.memo.mention_background.checked = false;
+      options.memo.mention_personalities.checked = false;
+      options.memo.mention_modulation_field.checked = true;
+      options.memo.mention_special_effect_field.checked = false;
+
       // ステータスの形式
-      status_compile_vitality.checked = true;
-      status_three_values.checked = false;
-      status_cost.checked = false;
-      
+      options.status.compile_vitality.checked = false;
+      options.status.four_values.checked = true;
+      options.status.cost.checked = true;
+
       // チャットパレットの形式
-      chat_palette_mention_skill.checked = false;
-      chat_palette_mention_ninpou.checked = true;
+      options.chat_palette.mention_skill.checked = true;
+      options.chat_palette.mention_ninpou.checked = true;
+      options.chat_palette.mention_hidden_skill.checked = true;
+      options.chat_palette.mention_hidden_ninpou.checked = true;
+      options.chat_palette.mention_special_effect.checked = true;
+      options.chat_palette.mention_item.checked = false;
       break;
     case "expansion":
       // 忍法の形式
-      ninpou_mention_name.checked = true;
-      ninpou_mention_type.checked = true;
-      ninpou_mention_target_skill.checked = true;
-      ninpou_mention_range.checked = true;
-      ninpou_mention_cost.checked = true;
-      ninpou_mention_page.checked = true;
-      
+      options.ninpou.mention_type.checked = true;
+      options.ninpou.mention_target_skill.checked = true;
+      options.ninpou.mention_range.checked = true;
+      options.ninpou.mention_cost.checked = true;
+      options.ninpou.mention_page.checked = true;
+
       // 背景の形式
-      background_mention_name.checked = true;
-      background_mention_type.checked = true;
-      background_mention_page.checked = true;
-      
+      options.background.mention_type.checked = true;
+      options.background.mention_page.checked = true;
+
       // 人物の形式
-      personalities_mention_name.checked = true;
-      personalities_mention_place.checked = true;
-      personalities_mention_secret.checked = true;
-      personalities_mention_special_effect.checked = true;
-      personalities_mention_emotion.checked = true;
-      
+      options.personalities.mention_place.checked = true;
+      options.personalities.mention_secret.checked = true;
+      options.personalities.mention_special_effect.checked = true;
+      options.personalities.mention_emotion.checked = true;
+
+      // 奥義の形式
+      options.special_effect.mention_skill.checked = true;
+      options.special_effect.mention_effect.checked = true;
+      options.special_effect.mention_page.checked = true;
+
+      // 忍具の形式
+      options.item.mention_effect.checked = true;
+
       // メモの形式
-      memo_mention_pl_name.checked = true;
-      memo_mention_sex.checked = true;
-      memo_mention_age.checked = true;
-      memo_mention_cover.checked = true;
-      memo_mention_belief.checked = true;
-      memo_mention_race.checked = true;
-      memo_mention_upperstyle.checked = true;
-      memo_mention_substyle.checked = true;
-      memo_mention_stylerule.checked = true;
-      memo_mention_foe.checked = true;
-      memo_mention_level.checked = true;
-      memo_mention_mission.checked = true;
-      memo_mention_memo.checked = false;
-      memo_mention_ninpou.checked = true;
-      memo_mention_background.checked = true;
-      memo_mention_personalities.checked = true;
-      
+      options.memo.mention_player.checked = true;
+      options.memo.mention_sex.checked = true;
+      options.memo.mention_age.checked = true;
+      options.memo.mention_cover.checked = true;
+      options.memo.mention_belief.checked = true;
+      options.memo.mention_race.checked = true;
+      options.memo.mention_upperstyle.checked = true;
+      options.memo.mention_substyle.checked = true;
+      options.memo.mention_stylerule.checked = true;
+      options.memo.mention_foe.checked = true;
+      options.memo.mention_level.checked = true;
+      options.memo.mention_memo.checked = false;
+      options.memo.mention_ninpou.checked = true;
+      options.memo.mention_background.checked = true;
+      options.memo.mention_personalities.checked = true;
+      options.memo.mention_modulation_field.checked = true;
+      options.memo.mention_special_effect_field.checked = true;
+
       // ステータスの形式
-      status_compile_vitality.checked = false;
-      status_three_values.checked = true;
-      status_cost.checked = true;
-      
+      options.status.compile_vitality.checked = false;
+      options.status.four_values.checked = true;
+      options.status.cost.checked = true;
+
       // チャットパレットの形式
-      chat_palette_mention_skill.checked = true;
-      chat_palette_mention_ninpou.checked = true;
+      options.chat_palette.mention_skill.checked = true;
+      options.chat_palette.mention_ninpou.checked = true;
+      options.chat_palette.mention_hidden_skill.checked = true;
+      options.chat_palette.mention_hidden_ninpou.checked = true;
+      options.chat_palette.mention_special_effect.checked = true;
+      options.chat_palette.mention_item.checked = true;
+      break;
+    case "recommended":
+      // 忍法の形式
+      options.ninpou.mention_type.checked = true;
+      options.ninpou.mention_target_skill.checked = true;
+      options.ninpou.mention_range.checked = true;
+      options.ninpou.mention_cost.checked = true;
+      options.ninpou.mention_page.checked = true;
+
+      // 背景の形式
+      options.background.mention_type.checked = false;
+      options.background.mention_page.checked = true;
+
+      // 人物の形式
+      options.personalities.mention_place.checked = true;
+      options.personalities.mention_secret.checked = true;
+      options.personalities.mention_special_effect.checked = true;
+      options.personalities.mention_emotion.checked = true;
+
+      // 奥義の形式
+      options.special_effect.mention_skill.checked = true;
+      options.special_effect.mention_effect.checked = true;
+      options.special_effect.mention_page.checked = true;
+
+      // 忍具の形式
+      options.item.mention_effect.checked = true;
+
+      // メモの形式
+      options.memo.mention_player.checked = false;
+      options.memo.mention_sex.checked = true;
+      options.memo.mention_age.checked = true;
+      options.memo.mention_cover.checked = true;
+      options.memo.mention_belief.checked = true;
+      options.memo.mention_race.checked = false;
+      options.memo.mention_upperstyle.checked = true;
+      options.memo.mention_substyle.checked = true;
+      options.memo.mention_stylerule.checked = true;
+      options.memo.mention_foe.checked = true;
+      options.memo.mention_level.checked = true;
+      options.memo.mention_memo.checked = false;
+      options.memo.mention_ninpou.checked = true;
+      options.memo.mention_background.checked = true;
+      options.memo.mention_personalities.checked = true;
+      options.memo.mention_modulation_field.checked = true;
+      options.memo.mention_special_effect_field.checked = true;
+
+      // ステータスの形式
+      options.status.compile_vitality.checked = false;
+      options.status.four_values.checked = true;
+      options.status.cost.checked = true;
+
+      // チャットパレットの形式
+      options.chat_palette.mention_skill.checked = true;
+      options.chat_palette.mention_ninpou.checked = true;
+      options.chat_palette.mention_hidden_skill.checked = true;
+      options.chat_palette.mention_hidden_ninpou.checked = true;
+      options.chat_palette.mention_special_effect.checked = true;
+      options.chat_palette.mention_item.checked = true;
       break;
   }
 };
 
-document.querySelectorAll("#option div:not(#base) input[type=\"checkbox\"]:not(#additional_vitality)").forEach(element => {
+document.querySelectorAll('#option div:not(#base) input[type="checkbox"]:not(#additional_vitality)').forEach((element) => {
   element.onchange = function () {
-    all_format_type.value = "custom";
+    options.base.format_type.value = "custom";
   };
 });
 
-function resultGenerate(data) {
-  const url = character_sheets_url.value;
-  const url_type = checkURL(url);
+function setAddCornerBrackets(name) {
+  return checkAddCornerBrackets(name, options.base.add_brackets_ninpou_name.checked);
+}
+
+function setAddDoubleParentheses(name) {
+  return checkAddDoubleParentheses(name, options.base.add_brackets_designated_specialties.checked);
+}
+
+function setAddPReferencePage(name) {
+  return checkAddPReferencePage(name, options.base.add_p_page.checked);
+}
+
+function setResult(datas) {
+  const public = datas[0];
+  const secret = datas[1];
   const status = [];
   const params = [];
   const memo = [];
   const chat_palette = [];
   const chat_palette_variable = [];
-  
-  if (status_compile_vitality.checked) {
-    status.push({
-      label: "生命力",
-      value: 6,
-      max: 6
-    });
+  const use_secret = options.base.use_password.checked && secret.error == null;
+
+  if (options.status.compile_vitality.checked) {
+    status.push({ label: "生命力", value: 6, max: 6 });
+  } else {
+    status.push({ label: "器術", value: 1, max: 1 });
+    status.push({ label: "体術", value: 1, max: 1 });
+    status.push({ label: "忍術", value: 1, max: 1 });
+    status.push({ label: "謀術", value: 1, max: 1 });
+    status.push({ label: "戦術", value: 1, max: 1 });
+    status.push({ label: "妖術", value: 1, max: 1 });
   }
-  else {
-    status.push({
-      label: "器術",
-      value: 1,
-      max: 1
-    });
-    status.push({
-      label: "体術",
-      value: 1,
-      max: 1
-    });
-    status.push({
-      label: "忍術",
-      value: 1,
-      max: 1
-    });
-    status.push({
-      label: "謀術",
-      value: 1,
-      max: 1
-    });
-    status.push({
-      label: "戦術",
-      value: 1,
-      max: 1
-    });
-    status.push({
-      label: "妖術",
-      value: 1,
-      max: 1
-    });
+  if (options.status.additional_vitality.checked) {
+    status.push({ label: "追加生命力", value: 0 });
   }
-  if (status_additional_vitality.checked) {
-    status.push({
-      label: "追加生命力",
-      value: 0
-    });
+  if (options.status.four_values.checked) {
+    status.push({ label: "目標値", value: 5 });
+    status.push({ label: "スペシャル値", value: 12 });
+    status.push({ label: "ファンブル値", value: 2 });
+    status.push({ label: "補正値", value: 0 });
   }
-  if (status_three_values.checked) {
-    status.push({
-      label: "目標値",
-      value: 5
-    });
-    status.push({
-      label: "スペシャル値",
-      value: 12
-    });
-    status.push({
-      label: "ファンブル値",
-      value: 2
-    });
+  if (options.status.cost.checked) {
+    status.push({ label: "使用可能コスト", value: 0 });
   }
-  if (status_cost.checked) {
-    status.push({
-      label: "使用可能コスト",
-      value: 0
-    });
-  }
-  
-  params.push({
-    label: "シーン表",
-    value: "ST"
-  });
-  params.push({
-    label: "感情表",
-    value: "ET"
-  });
-  params.push({
-    label: "ファンブル表",
-    value: "FT"
-  });
-  params.push({
-    label: "変調表",
-    value: "WT"
-  });
-  
-  if (memo_mention_pl_name.checked && !checkBlank(data.base.player)) memo.push(`PL: ${data.base.player}`);
-  if (memo_mention_sex.checked && !checkBlank(data.base.sex)) memo.push(`性別 : ${data.base.sex}`);
-  if (memo_mention_age.checked && !checkBlank(data.base.age)) memo.push(`年齢 : ${data.base.age}`);
-  if (memo_mention_cover.checked && !checkBlank(data.base.cover)) memo.push(`表の顔 : ${data.base.cover}`);
-  if (memo_mention_belief.checked && !checkBlank(data.base.belief)) memo.push(`信念 : ${data.base.belief}`);
-  if (memo_mention_race.checked && !checkBlank(data.base.race)) {
+
+  params.push({ label: "シーン表", value: "ST" });
+  params.push({ label: "感情表", value: "ET" });
+  params.push({ label: "ファンブル表", value: "FT" });
+  params.push({ label: "変調表", value: "WT" });
+
+  if (options.memo.mention_player && !checkBlank(public.base.player)) memo.push(`PL: ${public.base.player}`);
+  if (options.memo.mention_sex.checked && !checkBlank(public.base.sex)) memo.push(`性別 : ${public.base.sex}`);
+  if (options.memo.mention_age.checked && !checkBlank(public.base.age)) memo.push(`年齢 : ${public.base.age}`);
+  if (options.memo.mention_cover.checked && !checkBlank(public.base.cover)) memo.push(`表の顔 : ${public.base.cover}`);
+  if (options.memo.mention_belief.checked && !checkBlank(public.base.belief)) memo.push(`信念 : ${public.base.belief}`);
+  if (options.memo.mention_race.checked && !checkBlank(public.base.race)) {
     let race = "忍者";
-    switch (data.base.race) {
+    switch (public.base.race) {
       case "1":
         race = "忍者";
         break;
@@ -313,9 +311,9 @@ function resultGenerate(data) {
     }
     memo.push(`タイプ : ${race}`);
   }
-  if (memo_mention_upperstyle.checked && !checkBlank(data.base.upperstyle)) {
+  if (options.memo.mention_upperstyle.checked && !checkBlank(public.base.upperstyle)) {
     var upperstyle = "ハグレモノ";
-    switch(data.base.upperstyle) {
+    switch (public.base.upperstyle) {
       case "a":
         upperstyle = "斜歯忍軍";
         break;
@@ -337,74 +335,214 @@ function resultGenerate(data) {
     }
     memo.push(`上位流派 : ${upperstyle}`);
   }
-  if (memo_mention_substyle.checked && !checkBlank(data.base.substyle)) memo.push(`下位流派 : ${data.base.substyle}`);
-  if (memo_mention_stylerule.checked && !checkBlank(data.base.stylerule)) memo.push(`流儀 : ${data.base.stylerule}`);
-  if (memo_mention_foe.checked && !checkBlank(data.base.foe)) memo.push(`仇敵 : ${data.base.foe}`);
-  if (memo_mention_level.checked && !checkBlank(data.base.level)) memo.push(`階級 : ${data.base.level}`);
-  if (memo_mention_mission.checked && !checkBlank(data.scenario.mission)) memo.push(`使命 :\n${data.scenario.mission}`);
-  if (memo_mention_memo.checked && !checkBlank(data.base.memo)) memo.push(`メモ :\n${data.base.memo}`);
-  if (memo_mention_ninpou.checked && data.ninpou.length > 0) {
+  if (options.memo.mention_substyle.checked && !checkBlank(public.base.substyle)) memo.push(`下位流派 : ${public.base.substyle}`);
+  if (options.memo.mention_stylerule.checked && !checkBlank(public.base.stylerule)) memo.push(`流儀 : ${public.base.stylerule}`);
+  if (options.memo.mention_foe.checked && !checkBlank(public.base.foe)) memo.push(`仇敵 : ${public.base.foe}`);
+  if (options.memo.mention_level.checked && !checkBlank(public.base.level)) memo.push(`階級 : ${public.base.level}`);
+  if (options.memo.mention_memo.checked && !checkBlank(public.base.memo)) memo.push(`メモ :\n${public.base.memo}`);
+  if (options.memo.mention_ninpou.checked && public.ninpou.length > 0) {
     const ninpou = [];
-    for (const element of data.ninpou) {
+    for (const element of public.ninpou) {
       const data = [];
-      data.push(checkAddCornerBrackets(element.name, all_add_brackets_ninpou_name.checked).replace("\n", " "));
-      if (ninpou_mention_type.checked && !checkBlank(element.type)) data.push(`${element.type}忍法`);
-      if (ninpou_mention_target_skill.checked && !checkBlank(element.targetSkill)) data.push(checkAddDoubleParentheses(element.targetSkill, all_add_brackets_designated_specialties.checked));
-      if (ninpou_mention_range.checked && !checkBlank(element.range)) data.push(element.range);
-      if (ninpou_mention_cost.checked && !checkBlank(element.cost)) data.push(element.cost);
-      if (ninpou_mention_page.checked && !checkBlank(element.page)) data.push(checkAddPReferencePage(element.page, all_add_p_page.checked));
+      data.push(setAddCornerBrackets(element.name.replace("\n", " ")));
+      if (options.ninpou.mention_type.checked && !checkBlank(element.type)) data.push(`${element.type}忍法`);
+      if (options.ninpou.mention_target_skill.checked && !checkBlank(element.targetSkill)) data.push(setAddDoubleParentheses(element.targetSkill));
+      if (options.ninpou.mention_range.checked && !checkBlank(element.range)) data.push(element.range);
+      if (options.ninpou.mention_cost.checked && !checkBlank(element.cost)) data.push(element.cost);
+      if (options.ninpou.mention_page.checked && !checkBlank(element.page)) data.push(setAddPReferencePage(element.page));
       ninpou.push(data.join(" "));
     }
-    memo.push(`忍法 :\n${ninpou.join("\n")}`);
+    if (ninpou.length > 0) memo.push(`忍法 :\n${ninpou.join("\n")}`);
   }
-  
+  if (options.memo.mention_background.checked && public.background.length > 0) {
+    const background = [];
+    for (const element of public.background) {
+      if (checkBlank(element.name)) continue;
+      const data = [];
+      data.push(setAddCornerBrackets(element.name.replace("\n", " ")));
+      if (options.background.mention_type.checked && !checkBlank(element.type)) data.push(element.type);
+      if (options.background.mention_page.checked && !checkBlank(element.page)) data.push(element.page);
+      background.push(data.join(" "));
+    }
+    if (background.length > 0) memo.push(`背景 :\n${background.join("\n")}`);
+  }
+  if (options.memo.mention_personalities.checked && public.personalities.length > 0) {
+    const personalities = [];
+    for (const element of public.personalities) {
+      if (checkBlank(element.name)) continue;
+      const data = [];
+      if (options.personalities.mention_place.checked) data.push(`居所: ${element.place == "1" ? "○" : "×"}`);
+      if (options.personalities.mention_secret.checked) data.push(`秘密: ${element.secret == "1" ? "○" : "×"}`);
+      if (options.personalities.mention_special_effect.checked) data.push(`奥義: ${element.specialEffect == "1" ? "○" : "×"}`);
+      if (options.personalities.mention_emotion.checked) {
+        let emotion = "共感";
+        switch (element.emotion) {
+          case "1":
+            if (element.direction == "1") emotion = "共感";
+            else emotion = "不信";
+            break;
+          case "2":
+            if (element.direction == "1") emotion = "友情";
+            else emotion = "怒り";
+            break;
+          case "3":
+            if (element.direction == "1") emotion = "愛情";
+            else emotion = "妬み";
+            break;
+          case "4":
+            if (element.direction == "1") emotion = "忠誠";
+            else emotion = "軽蔑";
+            break;
+          case "5":
+            if (element.direction == "1") emotion = "憧憬";
+            else emotion = "劣等感";
+            break;
+          case "6":
+            if (element.direction == "1") emotion = "狂信";
+            else emotion = "殺意";
+            break;
+        }
+        data.push(`感情: ${emotion}`);
+      }
+      personalities.push(`${element.name}${data.length > 0 ? ` (${data.join(", ")})` : ""}`);
+    }
+    if (personalities.length > 0) memo.push(`人物 :\n${personalities.join("\n")}`);
+  }
+  if (options.memo.mention_modulation_field.checked) memo.push("\n変調:\n");
+  if (options.memo.mention_special_effect_field.checked) memo.push("\n奥義:\n");
+
   chat_palette.push("@各種表\n{シーン表を振る}\n{感情表を振る}\n{ファンブル表を振る}\n{変調表を振る}");
   chat_palette_variable.push(`シーン表を振る={シーン表}`);
   chat_palette_variable.push(`感情表を振る={感情表}`);
   chat_palette_variable.push(`ファンブル表を振る={ファンブル表}`);
   chat_palette_variable.push(`変調表を振る={変調表}`);
-  if (chat_palette_mention_skill.checked) {
-    const learned = [];
-    learned.push("{判定}");
-    chat_palette_variable.push(`判定=SG${status_three_values.checked ? "@{スペシャル値}#{ファンブル値}>={目標値}" : ">=5"}`);
-    for (const element of data.learned) {
+
+  const learned = [];
+  learned.push("{判定}");
+  chat_palette_variable.push(`判定=SG${options.status.four_values.checked ? "@{スペシャル値}#{ファンブル値}+{補正値}>={目標値}" : ">=5"}`);
+  if (options.chat_palette.mention_skill.checked) {
+    const data = [];
+    for (const element of public.learned) {
       if (checkBlank(element.id)) continue;
       const skill = convertSkill(element.id);
-      learned.push(`{${skill}判定}`);
-      chat_palette_variable.push(`${skill}判定=SG${status_three_values.checked ? "@{スペシャル値}#{ファンブル値}>={目標値}" : ">=5"} (判定 : ${skill})`);
+      data.push(`{${skill}判定}`);
+      chat_palette_variable.push(`${skill}判定=SG${options.status.four_values.checked ? "@{スペシャル値}#{ファンブル値}+{補正値}>={目標値}" : ">=5"} (判定 : ${skill})`);
     }
-    if (learned.length > 0) chat_palette.push(`@特技\n${learned.join("\n")}`);
+    if (data.length > 0) {
+      data.unshift("@公開");
+      learned.push(data);
+    }
   }
-  if (chat_palette_mention_ninpou.checked && data.ninpou.length > 0) {
-    const ninpou = [];
-    for (const element of data.ninpou) {
-      const data = [];
-      data.push(checkAddCornerBrackets(element.name, all_add_brackets_ninpou_name.checked).replace("\n", " "));
-      if (ninpou_mention_type.checked && !checkBlank(element.type)) data.push(`${element.type}忍法`);
-      if (ninpou_mention_target_skill.checked && !checkBlank(element.targetSkill)) data.push(checkAddDoubleParentheses(element.targetSkill, all_add_brackets_designated_specialties.checked));
-      if (ninpou_mention_range.checked && !checkBlank(element.range)) data.push(element.range);
-      if (ninpou_mention_cost.checked && !checkBlank(element.cost)) data.push(element.cost);
-      if (ninpou_mention_page.checked && !checkBlank(element.page)) data.push(checkAddPReferencePage(element.page, all_add_p_page.checked));
+  if (use_secret && options.chat_palette.mention_hidden_skill.checked) {
+    const data = [];
+    for (const element of secret.hiddenSkills) {
+      if (checkBlank(element.id)) continue;
+      const skill = convertSkill(element.id);
+      data.push(`{${skill}判定}`);
+      chat_palette_variable.push(`${skill}判定=SG${options.status.four_values.checked ? "@{スペシャル値}#{ファンブル値}+{補正値}>={目標値}" : ">=5"} (判定 : ${skill})`);
+    }
+    if (data.length > 0) {
+      data.unshift("@非公開");
+      learned.push(data);
+    }
+  }
+  if (learned.length > 0) chat_palette.push(`@特技\n${learned.map((value) => (Array.isArray(value) ? value.join("\n") : value)).join("\n")}`);
+
+  const ninpou = [];
+  if (options.chat_palette.mention_ninpou.checked) {
+    const data = [];
+    for (const element of public.ninpou) {
+      const ninpou = [];
+      ninpou.push(setAddCornerBrackets(element.name.replace("\n", " ")));
+      if (options.ninpou.mention_type.checked && !checkBlank(element.type)) ninpou.push(`${element.type}忍法`);
+      if (options.ninpou.mention_target_skill.checked && !checkBlank(element.targetSkill)) ninpou.push(setAddDoubleParentheses(element.targetSkill));
+      if (options.ninpou.mention_range.checked && !checkBlank(element.range)) ninpou.push(element.range);
+      if (options.ninpou.mention_cost.checked && !checkBlank(element.cost)) ninpou.push(element.cost);
+      if (options.ninpou.mention_page.checked && !checkBlank(element.page)) ninpou.push(setAddPReferencePage(element.page));
       const name = checkAddCornerBrackets(element.name, false).replace("\n", " ");
-      ninpou.push(`{${name}}`);
-      chat_palette_variable.push(`${name}=${data.join(" ")}`);
+      data.push(`{${name}}`);
+      chat_palette_variable.push(`${name}=${ninpou.join(" ")}`);
     }
-    chat_palette.push(`@忍法\n${ninpou.join("\n")}`);
+    if (data.length > 0) {
+      data.unshift("@公開");
+      ninpou.push(data);
+    }
   }
-  chat_palette.push(`@チャントパレット変数\n${chat_palette_variable.map(value => `//${value}`).join("\n")}`);
-  
+  if (use_secret && options.chat_palette.mention_hidden_ninpou.checked && secret.ninpou != null) {
+    const data = [];
+    for (const element of secret.ninpou) {
+      const ninpou = [];
+      ninpou.push(setAddCornerBrackets(element.name.replace("\n", " ")));
+      if (options.ninpou.mention_type.checked && !checkBlank(element.type)) ninpou.push(`${element.type}忍法`);
+      if (options.ninpou.mention_target_skill.checked && !checkBlank(element.targetSkill)) ninpou.push(setAddDoubleParentheses(element.targetSkill));
+      if (options.ninpou.mention_range.checked && !checkBlank(element.range)) ninpou.push(element.range);
+      if (options.ninpou.mention_cost.checked && !checkBlank(element.cost)) ninpou.push(element.cost);
+      if (options.ninpou.mention_page.checked && !checkBlank(element.page)) ninpou.push(setAddPReferencePage(element.page));
+      const name = checkAddCornerBrackets(element.name, false).replace("\n", " ");
+      data.push(`{${name}}`);
+      chat_palette_variable.push(`${name}=${ninpou.join(" ")}`);
+    }
+    if (data.length > 0) {
+      data.unshift("@非公開");
+      ninpou.push(data);
+    }
+  }
+  if (ninpou.length > 0) {
+    console.log(ninpou);
+    chat_palette.push(`@忍法\n${ninpou.map((value) => value.join("\n")).join("\n")}`);
+  }
+
+  if (use_secret) {
+    if (options.chat_palette.mention_special_effect.checked) {
+      const data = [];
+      for (const element of secret.specialEffect) {
+        const text = [];
+        text.push(element.name.replace("\n", " "));
+        if (options.special_effect.mention_skill.checked && !checkBlank(element.skill)) text.push(setAddDoubleParentheses(element.skill));
+        if (options.special_effect.mention_effect.checked && !checkBlank(element.effect)) text.push(element.effect);
+        if (options.special_effect.mention_page.checked && !checkBlank(element.page)) text.push(element.page);
+        data.push(`{奥義${addCornerBrackets(element.name.replace("\n", " "))}}`);
+        chat_palette_variable.push(`奥義${addCornerBrackets(element.name.replace("\n", " "))}=${text.join(" ")}`);
+      }
+      if (data.length > 0) chat_palette.push(`@奥義\n${data.join("\n")}`);
+    }
+    if (options.chat_palette.mention_item.checked) {
+      const data = [];
+      for (const element of secret.item) {
+        const text = [];
+        text.push(element.name.replace("\n", " "));
+        if (options.item.mention_effect.checked) text.push(element.effect);
+        data.push(`{アイテム${addCornerBrackets(element.name.replace("\n", " "))}}`);
+        chat_palette_variable.push(`アイテム${addCornerBrackets(element.name.replace("\n", " "))}=${text.join(" ")}`);
+      }
+      if (data.length > 0) chat_palette.push(`@アイテム\n${data.join("\n")}`);
+    }
+  }
+
+  chat_palette.push(`@チャントパレット変数\n${chat_palette_variable.map((value) => `//${value}`).join("\n")}`);
+
+  const url = character_sheets_url.value;
+  let externalUrl = "";
+  switch (checkURL(url)) {
+    case 0:
+      externalUrl = url;
+      break;
+    case 1:
+      externalUrl = `https://character-sheets.appspot.com/shinobigami/edit.html?key=${url}`;
+      break;
+  }
   const json = {
     kind: "character",
     data: {
-      name: `${data.base.name} (${data.base.nameKana})`,
+      name: `${public.base.name} (${public.base.nameKana})`,
       memo: memo.join("\n"),
       initiative: -1,
-      externalUrl: all_mention_url.checked && url_type == 1 ? url : "",
+      externalUrl: externalUrl,
       status: status,
       params: params,
       secret: true,
-      commands: chat_palette.join("\n\n")
-    }
+      commands: chat_palette.join("\n\n"),
+    },
   };
   ccfolia_result.value = JSON.stringify(json);
   memo_result.value = json.data.memo;

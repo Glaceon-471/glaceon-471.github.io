@@ -4,10 +4,10 @@
   "description": "Glaceon-471's Tools and Pages",
   "main": "index.js",
   "scripts": {
-    "format:prettier": "prettier -w \"${0}\"",
-    "format:stylelint": "stylelint \"${0}\" --fix",
-    "format:all": "npm run format:prettier \"./**/*.{html,js,css}\" ; npm run format:stylelint \"./**/*.css\"",
-    "tailwindcss:create": "tailwindcss -i ./assets/css/tailwind.before.css -o ./assets/css/tailwind.css"
+    "format:prettier": "prettier -w \"./**/*.{html,js,css}\"",
+    "format:stylelint": "stylelint \"./**/*.css\" --fix",
+    "format:all": "npm run format:prettier & npm run format:stylelint",
+    "tailwind:create": "tailwindcss -i ./assets/css/tailwind.before.css -o ./assets/css/tailwind.css"
   },
   "repository": {
     "type": "git",

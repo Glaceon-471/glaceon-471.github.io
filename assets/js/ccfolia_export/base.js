@@ -3,20 +3,21 @@ const conversion_button = document.getElementById("conversion");
 const ccfolia_result = document.querySelector("div#output > div#ccfolia > textarea");
 const memo_result = document.querySelector("div#output > div#memo > textarea");
 const chat_palette_result = document.querySelector("div#output > div#chat_palette > textarea");
+const options = {};
 
-/**
- * @param {string} group 
- * @param {string} id 
- * @returns {Element | null}
- */
-function getOption(group, id) {
-  return document.querySelector(`div#option > div#${group} #${id}`);
+for (const div of document.querySelectorAll("div#option > div")) {
+  const group = div.id;
+  const group_options = {};
+  for (const element of div.querySelectorAll("input, select")) {
+    group_options[element.id] = element;
+  }
+  options[group] = group_options;
 }
 
 /**
- * @param {string} id 
- * @param {string} text 
- * @returns {HTMLTextAreaElement} 
+ * @param {string} id
+ * @param {string} text
+ * @returns {HTMLTextAreaElement}
  */
 function addOutputSlot(id, text) {
   let div = document.createElement("div");
@@ -45,63 +46,54 @@ function addOutputSlot(id, text) {
 }
 
 /**
- * @param {string} text 
+ * @param {string} text
  * @returns {boolean}
  */
 function checkBlank(text) {
-  return !text || (typeof text == "string" && text.length <= 0);
+  return text == undefined || typeof text != "string" || text.length <= 0;
 }
 
+const character_sheets_url_reg = new RegExp(`^https://character-sheets.appspot.com/${system}/edit.html\\?key=[\\w-]+$`);
+const character_sheets_key_reg = /^[\w-]+$/;
 /**
- * @param {string} url 
- * @returns {0 | 1 | 2 | 3 | 4} 0: 対応していないリンク, 1~4: 対応しているリンク
+ * @param {string} url
+ * @returns {0 | 1 | 2} 0: 対応していないリンク, 1~: 対応しているリンク
  */
 function checkURL(url) {
-  if (new RegExp(`^https://character-sheets.appspot.com/${system}/edit.html\\?key=[\\w-]+$`).test(url))
-    return 1;
-  if (new RegExp(`^https://character-sheets.appspot.com/${system}/display\\?key=[\\w-]+$`).test(url))
-    return 2;
-  if (new RegExp(`^https://character-sheets.appspot.com/${system}/display\\?key=[\\w-]+&ajax=1$`).test(url))
-    return 3;
-  if (new RegExp(`^https://character-sheets.appspot.com/${system}/display\\?key=[\\w-]+&ajax=1&callback=resultGenerate$`).test(url))
-    return 4;
+  if (character_sheets_url_reg.test(url)) return 1;
+  if (character_sheets_key_reg.test(url)) return 2;
   return 0;
 }
 
 /**
  * @param {boolean} is_click
  */
-function startGenerate(is_click) {
-  let url = character_sheets_url ? character_sheets_url.value : void 0;
-  switch (checkURL(url)) {
+function assignData(is_click) {
+  let key = character_sheets_url ? character_sheets_url.value : void 0;
+  switch (checkURL(key)) {
     case 0:
-      console.error(`"${url}"は対応していないリンクです`);
+      console.error(`"${key}"は対応していないリンクです`);
       if (is_click) {
-        alert(`"${url}"は対応していないリンクです`);
+        alert(`"${key}"は対応していないリンクです`);
       }
       return;
     case 1:
-      url = `${url.replace("edit.html", "display")}&ajax=1&callback=resultGenerate`;
-      break;
-    case 2:
-      url += "&ajax=1&callback=resultGenerate";
-      break;
-    case 3:
-      url += "&callback=resultGenerate";
+      key = new URLSearchParams(key).get("key");
       break;
   }
-  
-  $.ajax({
-    url: url,
-    dataType: "jsonp",
-    callback: "resultGenerate",
-    jsonp: false
+
+  $.when.apply($, getRequest(key)).done(function (...responses) {
+    const datas = responses.map((value) => value[0]);
+    if (datas[0] == null || datas[0].error != null) {
+      return;
+    }
+    setResult(datas);
   });
 }
 
 const corner_brackets = /^【.+】$/;
 /**
- * @param {string} name 
+ * @param {string} name
  * @returns {string}
  */
 function addCornerBrackets(name) {
@@ -109,8 +101,8 @@ function addCornerBrackets(name) {
   else return `【${name}】`;
 }
 /**
- * @param {string} name 
- * @param {boolean} checked 
+ * @param {string} name
+ * @param {boolean} checked
  * @returns {string}
  */
 function checkAddCornerBrackets(name, checked) {
@@ -121,18 +113,19 @@ function checkAddCornerBrackets(name, checked) {
 
 const double_parentheses = /^《.+》$/;
 /**
- * @param {string} name 
+ * @param {string} name
  * @returns {string}
  */
 function addDoubleParentheses(name) {
   if (name.includes("可変")) return "可変";
   else if (name.includes("なし")) return "なし";
+  else if (name.includes("-")) return "-";
   else if (double_parentheses.test(name)) return name;
   else return `《${name}》`;
 }
 /**
- * @param {string} name 
- * @param {boolean} checked 
+ * @param {string} name
+ * @param {boolean} checked
  * @returns {string}
  */
 function checkAddDoubleParentheses(name, checked) {
@@ -143,7 +136,7 @@ function checkAddDoubleParentheses(name, checked) {
 
 const reference_page = /^.+P$/i;
 /**
- * @param {string} name 
+ * @param {string} name
  * @returns {string}
  */
 function addReferencePage(name) {
@@ -151,8 +144,8 @@ function addReferencePage(name) {
   else return `${name}P`;
 }
 /**
- * @param {string} name 
- * @param {boolean} checked 
+ * @param {string} name
+ * @param {boolean} checked
  * @returns {string}
  */
 function checkAddPReferencePage(name, checked) {
@@ -164,7 +157,7 @@ function checkAddPReferencePage(name, checked) {
 const row_number = /row[\d]+/;
 const column_number = /name[\d]+/;
 /**
- * @param {string} id 
+ * @param {string} id
  * @returns {string | undefined}
  */
 function convertSkill(id) {
@@ -173,11 +166,10 @@ function convertSkill(id) {
 }
 
 character_sheets_url.onchange = function () {
-  startGenerate(false);
+  assignData(false);
 };
-
 conversion_button.onclick = function () {
-  startGenerate(true);
+  assignData(true);
 };
 
 document.querySelector("div#output > div#ccfolia > button").onclick = function () {
