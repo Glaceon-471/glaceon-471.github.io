@@ -42,7 +42,7 @@ jobs:
       - name: Install npm Packages
         run: npm install
       - name: Setup TailwindCSS
-        run: npm run tailwindcss:create
+        run: npm run tailwind:create
       - name: Setup Ruby
         # https://github.com/ruby/setup-ruby/releases/tag/v1.207.0
         uses: ruby/setup-ruby@v1
