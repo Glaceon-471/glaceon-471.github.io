@@ -5,7 +5,7 @@
 function getRequest(key) {
   const requests = [];
   requests.push(
-    $.ajax({ dataType: "json", url: `https://character-sheets.appspot.com/${system}/display?key=${key}&ajax=1`, type: "get", callback: "" })
+    $.ajax({ dataType: "jsonp", url: `https://character-sheets.appspot.com/${system}/display?key=${key}&ajax=1`, type: "get" })
       .done((data, status, xhr, never) => {
         if (data.error) {
           alert(data.error);
