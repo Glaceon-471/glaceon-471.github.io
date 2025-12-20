@@ -366,7 +366,7 @@ function setResult(datas) {
     }
     if (background.length > 0) memo.push(`背景 :\n${background.join("\n")}`);
   }
-  if (options.memo.mention_personalities.checked && public.personalities.length > 0) {
+  if (options.memo.mention_personalities.checked) {
     const personalities = [];
     for (const element of public.personalities) {
       if (checkBlank(element.name)) continue;
@@ -406,7 +406,15 @@ function setResult(datas) {
       }
       personalities.push(`${element.name}${data.length > 0 ? ` (${data.join(", ")})` : ""}`);
     }
-    if (personalities.length > 0) memo.push(`人物 :\n${personalities.join("\n")}`);
+    if (personalities.length <= 0) {
+      const data = [];
+      if (options.personalities.mention_place.checked) data.push(`居所: ○/×`);
+      if (options.personalities.mention_secret.checked) data.push(`秘密: ○/×`);
+      if (options.personalities.mention_special_effect.checked) data.push(`奥義: ○/×`);
+      if (options.personalities.mention_emotion.checked) data.push(`感情: 感情`);
+      personalities.push("");
+    }
+    memo.push(`\n人物 :\n${personalities.join("\n")}\n`);
   }
   if (options.memo.mention_modulation_field.checked) memo.push("\n変調:\n");
   if (options.memo.mention_special_effect_field.checked) memo.push("\n奥義:\n");
