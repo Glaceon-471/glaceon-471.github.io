@@ -78,7 +78,7 @@ function assignData(is_click) {
       }
       return;
     case 1:
-      key = new URLSearchParams(key).get("key");
+      key = new URLSearchParams(key.substring(key.indexOf("?") + 1)).get("key");
       break;
   }
 
